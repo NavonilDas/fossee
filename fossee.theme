@@ -1,0 +1,113 @@
+<?php 
+
+function fossee_preprocess_html(&$variables){
+
+}
+
+function fossee_preprocess_page(&$variables, $hook) {
+    // $variables['this_is'] = 'hsgsg';
+    fossee_theme_get_settings('scilab_blck',1);
+    $blocks = array(
+        'scilab'=>array(
+            'title'=>'Scilab',
+            'description'=>'Scilab is a free and open source software for numerical computation developed by Scilab Enterprises, France. Scilab also includes Xcos which is an open source alternative to Simulink.',
+            'icon'=>'scilab.png',
+            'enabled'=>1
+        ),
+        'python'=>array(
+            'title'=>'Python',
+            'description'=>'Python is a general-purpose, high-level, remarkably powerful dynamic programming language that is used in a wide variety of application domains. It supports multiple programming paradigms.',
+            'icon'=>'python.png',
+            'enabled'=>1
+        ),
+        'esim'=>array(
+            'title'=>'eSim',
+            'description'=>'eSim (formerly known as Oscad/FreeEDA) is an EDA tool for circuit design, simulation, analysis and PCB design. It is developed by the FOSSEE team at IIT Bombay as an open source alternative to OrCAD. ',
+            'icon'=>'esim.png',
+            'enabled'=>1
+        ),
+        'dwsim'=>array(
+            'title'=>'DWSIM',
+            'description'=>'DWSIM is an open source CAPE-OPEN compliant chemical process simulator. Helps understand the behavior of Chemical Systems by using rigorous thermodynamic and unit operations models.',
+            'icon'=>'dwsim.png',
+            'enabled'=>1
+        ),
+        'openfoam'=>array(
+            'title'=>'OpenFOAM',
+            'description'=>'penFOAM is a free and open source CFD toolbox useful to solve anything from complex fluid flows involving chemical reactions, turbulence and heat transfer, to solid dynamics and electromagnetics.',
+            'icon'=>'cfd.png',
+            'enabled'=>1
+        ),
+        'om'=>array(
+            'title'=>'OpenModelica',
+            'description'=>'OpenModelica is a free and open source environment based on the Modelica modelling language for modelling, simulating, optimising and analysing complex dynamic systems. ',
+            'icon'=>'om.png',
+            'enabled'=>1
+        ),
+        'or'=>array(
+            'title'=>'OR-Tools',
+            'description'=>'Optimisation and Simulation are the areas of focus in the FOSSEE OR Tools project. The OR Tools include COIN-OR, GLPK etc, interfaced through open-source environments like Scilab and languages such as Python.',
+            'icon'=>'or.png',
+            'enabled'=>1
+        ),
+        'sandhi'=>array(
+            'title'=>'Sandhi',
+            'description'=>'We are in process of migrating this to Xcos',
+            'icon'=>'sandhi.png',
+            'enabled'=>1
+        ),
+        'plc'=>array(
+            'title'=>'OpenPLC',
+            'description'=>'OpenPLC is a fully open source Programmable Logic Controller creating opportunities for people to study its concepts, explore new technologies and share the resources.',
+            'icon'=>'plc.png',
+            'enabled'=>1
+        ),
+        'sa'=>array(
+            'title'=>'Scilab-Arduino',
+            'description'=>'The Scilab-Arduino interface is devoted to the control of Arduino from Scilab. The interface helps the user to perform embedded systems experiments on Arduino board using scilab code  and also through GUI based simulation environment, Xcos.',
+            'icon'=>'sa.png',
+            'enabled'=>1
+        ),
+        'sbhs'=>array(
+            'title'=>'SBHS',
+            'description'=>'SBHS (Single Board Heater System) is a lab-in-a-box setup useful for teaching and learning control systems.',
+            'icon'=>'sbhs.png',
+            'enabled'=>1
+        ),
+        'r'=>array(
+            'title'=>'R',
+            'description'=>'R is a language and environment for statistical computing and graphics.',
+            'icon'=>'rlogof.png',
+            'enabled'=>1
+        ),
+    );
+    $variables['projects'] = $blocks;
+    // dpm($variables);
+    // SELECT * FROM `menu_link_content_data` ORDER by weight asc
+    $connection = \Drupal::database();
+    // Get the no of total colleges
+    $query = $connection->query('SELECT title,link__uri FROM menu_link_content_data WHERE parent is NULL ORDER by weight asc');
+    $variables['main_menu'] = $query->fetchAll();
+}
+
+function fossee_theme_get_settings($key,$default){
+    $val = theme_get_setting($key);
+    if($val == NULL || $val == '')
+        return $default;
+    return $val;
+}
+
+function fossee_preprocess_menu(&$variables, $hook) {
+    if ($hook == 'menu__main') { // We're doing that for main menu.
+      // Get the current path.
+      $current_path = \Drupal::request()->getRequestUri();
+      $items = $variables['items'];
+      foreach ($items as $key => $item) {
+        // If path is current_path, set active to li.
+        if ($item['url']->toString() == $current_path) {
+        // Add active link.
+        $variables['items'][$key]['attributes']['class'] = 'active';
+        }
+      }
+    }
+}

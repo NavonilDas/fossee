@@ -1,0 +1,20 @@
+name: 'FOSSEE Theme'
+description: 'This is a demo theme'
+type: 'theme'
+package: Custom
+core: 8.x
+
+stylesheets-remove:
+  - core/themes/stable/css/views/views.module.css
+  - core/themes/stable/css/system/components/align.module.css
+
+regions:
+  header: Items of header
+  content: Items of content
+  sidebar_first: first sidebar
+  sidebar_second: second sidebar
+  footer: items of footer
+  braedcrumbs: items of braedcrumbs
+
+libraries:
+  - fossee/global-css

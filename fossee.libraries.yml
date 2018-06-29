@@ -1,0 +1,6 @@
+global-css:
+  css:
+    theme:
+      css/style.css: {}
+      css/bootstrap.min.css: {}
+      css/fontawesome.css: {}
