@@ -131,12 +131,15 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state) {
     return $form;
 }
 
-function fossee_theme_get_settings($key,$default){
-    $val = theme_get_setting($key);
-    if($val == NULL || $val == '')
-        return $default;
-    return $val;
+if(!function_exists('fossee_theme_get_settings')){
+    function fossee_theme_get_settings($key,$default){
+        $val = theme_get_setting($key);
+        if($val == NULL || $val == '')
+            return $default;
+        return $val;
+    }
 }
+
 
 function fossee_demo_ajax(){
     dpm("snjjjs");
