@@ -1,0 +1,180 @@
+/*The Logo of the Website*/
+#logo{
+    float: left;
+    height:60px;
+    /* width:180px; */
+    background-color: white;
+}
+/* Header Of the Website*/
+#fosseeheader{
+    position: fixed;
+    top:0;
+    z-index: 111;
+    background-color: #fff;
+    width:100%;
+    height: 60px;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.5);
+    color: #fff;
+    margin-bottom: 3px;
+    padding: 7px;
+    overflow-x: hidden;
+}
+#mainMenu{
+    height: 100%;
+    float: left;
+    font-size: 1.5em;
+    font-family: 'Lato',sans-serif;
+    font-style: normal;
+}
+#mainMenu ul{
+  margin-left: 0.5em;
+  margin-top: -0.3em;
+}
+/* The Top Menu */
+#mainMenu ul li{
+    display: inline;
+}
+#mainMenu ul li a{
+    text-decoration: none;
+    font-weight: lighter;
+    color: #000;
+    padding:5px;
+    position: relative;
+    top:20px;
+    margin-left: 5px;
+    border-radius:8px;
+}
+#mainMenu ul li a:first{
+    margin-left: 10px;
+}
+#mainMenu ul li a:hover{
+    background: #f66237;
+    color:#fff;
+}
+/* The Toggle Button*/
+#toggle{
+    display: none;
+    float:right;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    color:#000;
+    z-index:112;
+    font-size: 24px;
+    cursor: pointer;
+}
+#toggle:hover{
+    background: orangered;
+    color:#fff;
+}
+/*  Left Side navigation bar when */
+#sideNavBar{
+    width: 0;
+    overflow-x: hidden;
+    position: fixed;
+    left:0px;
+    background:#f2f2f2;
+    top:0px;
+    left:0px;
+    z-index: 114;
+    transition: width 0.5s ease;
+    height:100vh;
+}
+#sideNavBar label{
+    color: red;
+    font-size: 60px;
+    float:right;
+    position: relative;
+    top:20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+#sideNavBar ul{
+    position: relative;
+    top:100px;
+    visibility: hidden;
+}
+#sideNavBar ul li{
+    width:100%;
+}
+#sideNavBar ul li a{
+    text-decoration:none;
+    padding: 8px 8px 8px 32px;
+    font-size: 25px;
+    color: #000000;
+    display: block;
+    padding-left: 20%;
+}
+#sideNavBar ul li a:hover{
+    color: #f1f1f1;
+    background-color: #ff7b00;
+}
+/* Footer Section */
+#footer{
+    position: relative;
+    bottom:0;
+    width:100%;
+    background: linear-gradient(to right, #4c7099 0%,#e0701a 100%);
+    clear: both;
+    min-height: 300px;
+    color:#fff;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 5vw;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 120px;
+    grid-template-areas: "poster bro contacts mhrd"
+    "cc cc . icons";
+}
+#footer a{
+    text-decoration: none;
+    color:#B9B9B9;
+    font-size:18px;
+}
+
+@media screen and (max-width:850px){
+    #footer{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "contacts mhrd"
+        "cc  icons";
+    }
+}
+
+@media screen and (max-width:875px){
+    #mainMenu{
+        display: none;
+    }
+    #toggle{
+        display: block;
+    }
+}
+
+#toggle{
+  margin-top: 0.5em;
+  margin-right: 0.4em;
+  padding-top: 0.2em;
+  border-radius: 0.5em;
+}
+
+#footer #icons{
+    display: grid;
+    grid-area:icons;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#footer #icons div{
+    width:60px;
+    height:60px;
+    border-radius: 30px;
+    background-color: #4c7099;
+    font-size: 1.5em;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+#footer #icons div:hover{
+    background: orangered;
+}

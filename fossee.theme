@@ -5,6 +5,7 @@ function fossee_preprocess_html(&$variables){
 }
 
 function fossee_preprocess_page(&$variables, $hook) {
+    $cur_url = \Drupal::service('path.current')->getPath();
     global $base_url;
     $blocks = array(
         'scilab'=>array(
@@ -92,9 +93,6 @@ function fossee_preprocess_page(&$variables, $hook) {
     $query = $connection->query('SELECT title,link__uri FROM menu_link_content_data WHERE parent is NULL ORDER by weight asc');
     $variables['main_menu'] = $query->fetchAll();
     $variables['base_url'] = $base_url;
-    // $variables['icon_path'] =  drupal_get_path("theme",'FOSSEE');
-    // dpm(drupal_realpath("theme",'FOSSEE'));
-    // dpm("jnsn");
 }
 
 function fossee_theme_get_settings($key,$default){
@@ -105,16 +103,5 @@ function fossee_theme_get_settings($key,$default){
 }
 
 function fossee_preprocess_menu(&$variables, $hook) {
-    if ($hook == 'menu__main') { // We're doing that for main menu.
-      // Get the current path.
-      $current_path = \Drupal::request()->getRequestUri();
-      $items = $variables['items'];
-      foreach ($items as $key => $item) {
-        // If path is current_path, set active to li.
-        if ($item['url']->toString() == $current_path) {
-        // Add active link.
-        $variables['items'][$key]['attributes']['class'] = 'active';
-        }
-      }
-    }
+    
 }

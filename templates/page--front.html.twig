@@ -1,7 +1,7 @@
 <div id="page-wrapper">
   <div id="page">
     
-        <div id="fosseeheader">
+    <div id="fosseeheader">
         <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
         <div id="mainMenu">
             <ul>
@@ -10,7 +10,7 @@
               {% endfor %}
             </ul>
         </div>
-                    <label for="" id="toggle" onclick="showNavBar()">&#9776;</label>
+        <label for="" id="toggle" onclick="showNavBar()">&#9776;</label>
       </div>
 
     <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
@@ -30,6 +30,147 @@
               {% endfor %}
         </ul>
     </div>
+
+        <div id="anim">
+        <ul class="cb-slideshow">
+            <li>
+                <span>Image 01</span>
+            </li>
+            <li>
+                <span>Image 02</span>
+            </li>
+            <li>
+                <span>Image 03</span>
+            </li>
+            <li>
+                <span>Image 04</span>
+            </li>
+        </ul>
+    </div>
+    <div id="sidediv">
+        <p></p>
+    </div>
+
+    <div id="special-area">
+        <div id="news">
+            <div class="tabs">
+                <ul>
+                    <li onclick="changeNews(1)">
+                        <p>News</p>
+                    </li>
+                    <li onclick="changeNews(2)">
+                        <p>Policy</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="newscontent">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Project FOSSEE listed under 'resources for students' on the AICTE website.</td>
+                            <td>
+                                <a href="https://www.aicte-india.org/opportunities/students/resources_students" target="_blank">View Here</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Project FOSSEE listed under 'resources for faculty' on the AICTE website.</td>
+                            <td>
+                                <a href="https://www.aicte-india.org/opportunities/faculty/resources_faculty" target="_blank">View Here</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Scilab Lecture session held on Oct. 12, 2017</td>
+                            <td>
+                                <a href="https://www.youtube.com/watch?v=7dRw8H1ro9Y" target="_blank">View Here</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="https://fossee.in/media-article" class="btn" style="float: right;">View All</a>
+            </div>
+            <div class="policycontent" style="display:none;">
+                prpprprp
+            </div>
+        </div>
+
+        <div id="flexslider" onmouseenter="flex_stop_anim=true;" onmouseleave="flex_stop_anim=false;" style="overflow-x: hidden;display: none;">
+            <div class="flex">
+                <img class="theicon" src="{{ base_url }}/{{ directory }}/images/logo/logo_icon_1.png">
+                <a href="">Scilab Toolboxes</a>
+                <div class="thebutton">
+                    <div>
+                        <i class="arrow left"></i>
+                    </div>
+                    <div>
+                        <i class="arrow right"></i>
+                    </div>
+                </div>
+                <div class="thecontent">
+                    <p>FOSSEE has taken efforts to raise the level of Scilab toolboxes. Following are some of the toolboxes
+                        we are working on: Image processing toolbox, Signal processing toolbox, Communication toolbox, Optimization
+                        toolbox, Identification toolbox, Control systems toolbox, Scilab to C toolbox.</p>
+                </div>
+            </div>
+
+            <div class="flex">
+                <img src="{{ base_url }}/{{ directory }}/images/logo/logo_icon_2.png" alt="" class="theicon">
+                <a href="">Python Textbook Companions on Cloud</a>
+                <div class="thebutton">
+                    <div>
+                        <i class="arrow left"></i>
+                    </div>
+                    <div>
+                        <i class="arrow right"></i>
+                    </div>
+                </div>
+                <div class="thecontent">In order to allow anyone to easily view, modify, and run the Python textbook companions, the FOSSEE team
+                    has made these available online. This is done by using IPython notebooks that are hosted on our server
+                    at https://tbc-python.fossee.in. This environment allows viewers to use the examples with just a browser.
+                </div>
+            </div>
+
+            <div class="flex">
+                <img src="{{ base_url }}/{{ directory }}/images/logo/logo_icon_2.png" alt="" class="theicon">
+                <a href="">Yaksh Online Test</a>
+                <div class="thebutton">
+                    <div>
+                        <i class="arrow left"></i>
+                    </div>
+                    <div>
+                        <i class="arrow right"></i>
+                    </div>
+                </div>
+                <div class="thecontent">FOSSEE team has developed an Open Source Python-Django based web application to conduct online programming
+                    as well as MCQ based quizzes. It is an online solution to test the practical skills of students in various
+                    programming platforms like Python, C, C++, Java, Scilab &amp; Bash.</div>
+            </div>
+            <div class="flex">
+                <img src="{{ base_url }}/{{ directory }}/images/logo/logo_icon_4.png" alt="" class="theicon">
+                <a href="">Mixed Mode Simulation in eSim</a>
+                <div class="thebutton">
+                    <div>
+                        <i class="arrow left"></i>
+                    </div>
+                    <div>
+                        <i class="arrow right"></i>
+                    </div>
+                </div>
+                <div class="thecontent">NGHDL is a mixed mode circuit simulator developed by FOSSEE, using NgSpice and GHDL. In NGHDL, NgSpice is
+                    used to simulate the analog components and GHDL is used to simulate the digital components, where the
+                    analog and digital components are communicating through socket.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
     <h2 class="heading">Projects</h2>
 
     <div id="projects">
@@ -53,34 +194,267 @@
     </div>
 
 
-    <div id="footer">
-        <p>This work is licensed under a
-            <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
-            <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
-                <i class="fa fa-cc" style="font-size: 3em;"></i>
-            </a>
-        </p>
+    <div id="activites">
+        <h2 class="activites-head">Activites</h2>
+        <p>The FOSSEE Project promotes the use of the following FOSS tools to improve the quality of education and research:
+            We promote these tools by encouraging students and faculty to use them in education and research through the
+            activities listed in this page.</p>
+        <div id="act-content">
+            <ul class="act-tabs">
+                <li class="active" onclick="changeActivities(this,1)">
+                    <center>
+                        <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_05a.png" alt="">
+                        <br> Textbook Companion</center>
+                </li>
+
+                <li onclick="changeActivities(this,2)">
+                    <center>
+                        <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_04a.png" alt="">
+                        <br> Lab Migration</center>
+                </li>
+
+                <li onclick="changeActivities(this,3)">
+                    <center>
+                        <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_02a.png" alt="">
+                        <br> SELF Workshops </center>
+                </li>
+
+                <li onclick="changeActivities(this,4)">
+                    <center>
+                        <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_01a.png" alt="">
+                        <br> Forum </center>
+                </li>
+
+                <li onclick="changeActivities(this,5)">
+                    <center>
+                        <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_03a.png" alt="">
+                        <br> Workshops &amp; Conferences </center>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="a">
+                    <br>
+                    <h3>Textbook Companion</h3>
+                    <p>The Textbook Companion (TBC) activity aims to port solved examples from standard textbooks using a Free
+                        and Open source software.
+                        <p>
+                            <h4>Objectives:</h4>
+                            <ol>
+                                <li>Make individuals learn FOSS through a practical approach.</li>
+                                <li>Provide a huge database of Textbook Companions as a learning resource.</li>
+                                <li>To make it easy for users of such textbooks to start using FOSS.</li>
+                                <li>To improve the documentation available for FOSS.</li>
+                            </ol>
+                            <h4>This internship is available for the following FOSS supported by FOSSEE: </h4>
+                            <table class="table table-bordered" style="width:80%">
+                                <tr class="active">
+                                    <td>
+                                        <a href="https://www.scilab.in/Textbook_Companion_Project" target="_blank">
+                                            Scilab
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr class="success">
+                                    <td>
+                                        <a href="https://python.fossee.in/textbook-companion-project/" target="_blank">
+                                            Python
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr class="info">
+                                    <td>
+                                        <a href="https://esim.fossee.in/textbook-companion-project" target="_blank">
+                                            eSim
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr class="warning">
+                                    <td>
+                                        <a href="https://cfd.fossee.in/textbook-companion-project" target="_blank">
+                                            OpenFOAM
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr class="active">
+                                    <td width="50%">
+                                        <a href="https://or.fossee.in/textbook-companion" target="_blank">
+                                            OR-Tools
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr class="success">
+                                    <td>
+                                        <a href="https://dwsim.fossee.in/textbook-companion-project" target="_blank">
+                                            DWSIM
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            </table>
+                </div>
+                <div class="tab-pane" id="b" style="display: none;">
+                    <br>
+                    <h3>Lab Migration</h3>
+                    <p>Lab Migration aims to migrate labs that use proprietary software to a Free and Open Source Software (FOSS)
+                        only lab. Colleges can save a large amount of money that is spent on procuring licenses for commercial
+                        software by switching to FOSS.</p>
+                    <h4>Objectives:</h4>
+                    <ol>
+                        <li>Provide suggestions on the different ways FOSS can be implemented in the laboratory.</li>
+                        <li>Coordinate the migration of the lab to a FOSS only laboratory.</li>
+
+                        <li>Provide solutions to the lab's problem statements.</li>
+                    </ol>
+                    <h4>We currently offer Lab Migration for the following FOSS:</h4>
+                    <table class="table table-bordered" style="width:80%">
+                        <tbody>
+                            <tr class="active">
+                                <td>
+                                    <a href="https://scilab.in/Lab_Migration_Project" target="_blank">
+                                        Scilab
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr class="info">
+                                <td>
+                                    <a href="https://esim.fossee.in/lab-migration-project" target="_blank">
+                                        eSim
+                                    </a>
+                                </td>
+
+                            </tr>
+                            <tr class="warning">
+                                <td>
+                                    <a href="https://cfd.fossee.in/lab-migration-project" target="_blank">
+                                        OpenFOAM
+                                    </a>
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="c" style="display:none;">
+                    <br>
+                    <h3>SELF Workshops</h3>
+                    <p>SELF Workshops can be held at your institute with the use of ST. We help develop the ST for the FOSS
+                        tools we promote. The Spoken Tutorial project is about teaching and learning a particular FOSS (Free
+                        and Open Source Software) The Spoken Tutorial project is an initiative of the "Talk to a Teacher"
+                        project under the National Mission on Education through Information and Communication Technology,
+                        launched by MHRD, Govt of India.</p>
+                    <link>
+                </div>
+                <div class="tab-pane" id="d" style="display: none;">
+                    <br>
+                    <h3>Forum</h3>
+                    <p>For assistance in installation and use of the Free and Open Source Software, we recommend you to visit
+                        the
+                        <a href="https://forums.fossee.in/" target="_blank">FOSSEE Forum</a> to post your queries. This forum is monitored by domain experts who would attend
+                        to your queries. Note: Before posting your questions, you are requested to go through the list of
+                        questions already answered. There could be similar queries with solutions already provided.</p>
+
+                </div>
+                <div class="tab-pane" id="e" style="display:none">
+                    <br>
+                    <h3>Workshops &amp; Conferences</h3>We conduct various conferences, seminars, hands-on workshops to introduce
+                    FOSS users to various developments in the respective FOSS.Through these events, we also aim to evangelize
+                    the tool among new users.
+
+                </div>
+            </div>
+        </div>
     </div>
 
 
 
-    {# <footer class="site-footer">
-      <div class="layout-container">
-        {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-          <div class="site-footer__top clearfix">
-            {{ page.footer_first }}
-            {{ page.footer_second }}
-            {{ page.footer_third }}
-            {{ page.footer_fourth }}
-          </div>
-        {% endif %}
-        {% if page.footer_fifth %}
-          <div class="site-footer__bottom">
-            {{ page.footer_fifth }}
-          </div>
-        {% endif %}
-      </div>
-    </footer> #}
+
+    <div id="footer">
+        <div id="poster" style="grid-area: poster;">
+            <h2>Poster</h2>
+            <img src="{{ base_url }}/{{ directory }}/images/portfolios/poster.png" alt="">
+        </div>
+        <div id="brochure" style="grid-area: bro;">
+            <h2>Brochure</h2>
+            <img src="{{ base_url }}/{{ directory }}/images/portfolios/Fossee_Flyer.png" alt="">
+        </div>
+        <div id="contacts" style="grid-area: contacts;">
+            <h2>Contacts</h2>
+            <table>
+                <tr>
+                    <td>
+                        <i class="fa fa-home pr-10"></i>
+                    </td>
+                    <td>
+                        <p>FOSSEE, IIT Bombay</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-globe pr-10"></i>
+                    </td>
+                    <td>
+                        <p>Mumbai, India</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-phone pr-10"></i>
+                    </td>
+                    <td>
+                        <p>Phone : (+91) 22 25764133 </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-envelope pr-10"></i>
+                    </td>
+                    <td>
+                        <p>Email : info [at] fossee [dot] in</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="mhrd" style="grid-area: mhrd;">
+            <h2>MHRD</h2>
+            <p>Govt of India.</p>
+            <img src="{{ base_url }}/{{ directory }}/images/iitb.png" alt="">
+        </div>
+        <div id="cc" style="grid-area:cc;">
+            <p>This work is licensed under a
+                <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                    Creative Commons Attribution-ShareAlike 4.0 International License</a>
+                <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                    <i class="fa fa-cc" style="font-size: 3em;"></i>
+                </a>
+            </p>
+        </div>
+        <div id="icons" style="display: none;">
+            <div>
+                <i class="fa fa-signal"></i>
+            </div>
+            <div>
+                <i class="fa fa-facebook"></i>
+            </div>
+            <div>
+                <i class="fa fa-twitter"></i>
+            </div>
+            <div>
+                <i class="fa fa-youtube"></i>
+            </div>
+            <div>
+                <i class="fa fa-github"></i>
+            </div>
+        </div>
+    </div>
 
   </div>
 </div>

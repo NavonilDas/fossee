@@ -11,3 +11,4 @@ plc_blck: 1
 sa_blck: 1
 sbhs_blck: 1
 r_blck: 1
+the_logo: '/images/logo.png'
