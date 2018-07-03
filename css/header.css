@@ -117,7 +117,7 @@
     width:100%;
     background: linear-gradient(to right, #4c7099 0%,#e0701a 100%);
     clear: both;
-    min-height: 300px;
+    min-height: 400px;
     color:#fff;
     text-align: center;
     font-size: 18px;
@@ -131,15 +131,19 @@
 }
 #footer a{
     text-decoration: none;
-    color:#B9B9B9;
-    font-size:18px;
+    color:lightblue;
 }
 
 @media screen and (max-width:850px){
-    #footer{
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: "contacts mhrd"
-        "cc  icons";
+    #footer{ 
+        grid-template-columns: auto 300px 300px auto;
+        grid-template-rows: 1fr 60px 60px;
+        grid-template-areas: ". contacts mhrd ."
+        ". cc  cc ."
+        ". icons icons .";
+    }
+    #footer #icons{
+        margin-left: 150px;
     }
 }
 
@@ -162,19 +166,27 @@
 #footer #icons{
     display: grid;
     grid-area:icons;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 60px 60px 60px 60px 60px;
 }
-
+#footer #poster{
+    margin-bottom: 1em;
+}
 #footer #icons div{
-    width:60px;
-    height:60px;
-    border-radius: 30px;
-    background-color: #4c7099;
+    width:50px;
+    height:50px;
+    border-radius: 25px;
+    background-color: #4b97ee;
+    transition: font 1s ease;
     font-size: 1.5em;
     display: grid;
     align-items: center;
     justify-content: center;
 }
 #footer #icons div:hover{
-    background: orangered;
+    font-size: 1em;
+    background: rgb(11, 154, 211);
+}   
+#footer #cc{
+    grid-area:cc;
+    
 }

@@ -1,0 +1,76 @@
+{% if errpage.is == 1 %}
+  <style>
+      @import url("{{ base_url }}/{{ directory }}/css/error.css");
+  </style>
+  {# <h2>Error</h2> #}
+  <div class="cloud">☁</div>
+  <div class="cloud">☁</div>
+  <div class="cloud">☁</div>
+  <div class="cloud">☁</div>
+
+  <div id="centercontainer">
+    <div id="centerbox">
+    
+    <div id="no">
+      {{ errpage.no }}
+      </div>
+    <div id="message">
+      {% if errpage.no == '404' %}
+        Page not found
+      {% elseif errpage.no == '403'%}
+        Forbidden Error
+      {% elseif errpage.no == '401'%}
+        Unauthorized Error
+      {% endif %}
+    </div>
+        <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
+
+    </div>
+  </div>
+{% else %}
+
+
+<div class="layout-container">
+
+  <header role="banner">
+    {{ page.header }}
+  </header>
+
+  {{ page.primary_menu }}
+  {{ page.secondary_menu }}
+
+  {{ page.breadcrumb }}
+
+  {{ page.highlighted }}
+
+  {{ page.help }}
+
+  <main role="main">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    <div class="layout-content">
+      {{ page.content }}
+    </div>{# /.layout-content #}
+
+    {% if page.sidebar_first %}
+      <aside class="layout-sidebar-first" role="complementary">
+        {{ page.sidebar_first }}
+      </aside>
+    {% endif %}
+
+    {% if page.sidebar_second %}
+      <aside class="layout-sidebar-second" role="complementary">
+        {{ page.sidebar_second }}
+      </aside>
+    {% endif %}
+
+  </main>
+
+  {% if page.footer %}
+    <footer role="contentinfo">
+      {{ page.footer }}
+    </footer>
+  {% endif %}
+
+</div>
+{% endif %}

@@ -4,9 +4,45 @@ function fossee_preprocess_html(&$variables){
 
 }
 
+// function fossee_theme_suggestions_page(array $variables) {
+//     $path_args = explode('/', trim(\Drupal::service('path.current')->getPath(), '/'));
+//     $suggestions = theme_get_suggestions($path_args, 'page');
+//     $http_error_suggestions = [
+//       'system.401' => 'page__401',
+//       'system.403' => 'page__403',
+//       'system.404' => 'page__404',
+//     ];
+//     $route_name = \Drupal::routeMatch()->getRouteName();
+//     $route_name = \Drupal::request()->attributes->get('node');
+//     dpm($route_name);  
+//     if (isset($http_error_suggestions[$route_name])) { 
+//         $suggestions[] = $http_error_suggestions[$route_name];
+//     }
+  
+//     return $suggestions;
+//   }
+
 function fossee_preprocess_page(&$variables, $hook) {
-    $cur_url = \Drupal::service('path.current')->getPath();
     global $base_url;
+    $variables['base_url'] = $base_url;
+    $http_error_suggestions = [
+        'system.401' => 1,
+        'system.403' => 1,
+        'system.404' => 1,
+    ];
+    $route_name = \Drupal::routeMatch()->getRouteName();
+    $variables['errpage'] = array(
+        'is'=>0,
+        'no'=>''
+    );
+    if(isset($http_error_suggestions[$route_name])){
+        $variables['errpage'] = array(
+            'is'=>1,
+            'no'=>str_replace('system.','',$route_name)
+        );
+        return;
+    }
+    $cur_url = \Drupal::service('path.current')->getPath();
     $blocks = array(
         'scilab'=>array(
             'title'=>'Scilab',
@@ -90,9 +126,35 @@ function fossee_preprocess_page(&$variables, $hook) {
     );
     $variables['projects'] = $blocks;
     $connection = \Drupal::database();
-    $query = $connection->query('SELECT title,link__uri FROM menu_link_content_data WHERE parent is NULL ORDER by weight asc');
+    $query = $connection->query('SELECT title,link__uri FROM menu_link_content_data WHERE parent is NULL AND menu_name=:arg ORDER by weight asc ',array(
+        ':arg'=>'main'
+    ));
     $variables['main_menu'] = $query->fetchAll();
-    $variables['base_url'] = $base_url;
+    $variables['anim_imgs'] = array();
+    
+    $val = theme_get_setting('fossee_img_one');
+    $variables['anim_imgs']['img_one'] = array(
+        'url'=>($val == NULL || $val == '')?'':$val,
+        'def'=>($val == NULL || $val == '')?0:1
+    );
+
+    $val = theme_get_setting('fossee_img_two');
+    $variables['anim_imgs']['img_one'] = array(
+        'url'=>($val == NULL || $val == '')?'':$val,
+        'def'=>($val == NULL || $val == '')?0:1
+    );
+
+    $val = theme_get_setting('fossee_img_three');
+    $variables['anim_imgs']['img_one'] = array(
+        'url'=>($val == NULL || $val == '')?'':$val,
+        'def'=>($val == NULL || $val == '')?0:1
+    );
+
+    $val = theme_get_setting('fossee_img_four');
+    $variables['anim_imgs']['img_one'] = array(
+        'url'=>($val == NULL || $val == '')?'':$val,
+        'def'=>($val == NULL || $val == '')?0:1
+    );
 }
 
 function fossee_theme_get_settings($key,$default){

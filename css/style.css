@@ -14,18 +14,16 @@ body{
 #projects{
     background: #fff;
     display: grid;
-    width: 76%;
+    width: 100%;
     padding :10px;
     padding-bottom: 30px;
-    margin-left: 12%;
-    margin-right: 12%;
     margin-bottom: -5vw;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "e0 e1 e2"
-    "e3 e4 e5"
-    "e6 e7 e8"
-    "e9 e10 e11"
-    "e12 . .";
+    grid-template-columns: auto 365px 365px 365px auto;
+    grid-template-areas: ". e0 e1 e2 ."
+    ". e3 e4 e5 ."
+    ". e6 e7 e8 ."
+    ". e9 e10 e11 ."
+    ". e12 . . .";
     grid-gap: 20px 20px;
     align-items: center;
     justify-items: center;
@@ -83,14 +81,14 @@ body{
 
 @media screen and (max-width: 1000px) {
     #projects{
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: "e0 e1"
-        "e2 e3"
-        "e4 e5"
-        "e6 e7"
-        "e8 e9"
-        "e10 e11"
-        "e12 .";
+        grid-template-columns: auto 365px 365px auto;
+        grid-template-areas: ". e0 e1 ."
+        ". e2 e3 ."
+        ". e4 e5 ."
+        ". e6 e7 ."
+        ". e8 e9 ."
+        ". e10 e11 ."
+        ". e12 . .";
     }
     .back{
         padding-left:10px;
@@ -556,33 +554,6 @@ i.arrow {
     font-size: 3em;
     padding: 0;
     /* line-height: 200px;  */
-}
-.cb-slideshow li:nth-child(1) span { 
-    background-image: url(../images/i1.jpg) 
-}
-.cb-slideshow li:nth-child(2) span { 
-    background-image: url(../images/i2.jpg);
-    -webkit-animation-delay: 6s;
-    -moz-animation-delay: 6s;
-    -o-animation-delay: 6s;
-    -ms-animation-delay: 6s;
-    animation-delay: 6s; 
-}
-.cb-slideshow li:nth-child(3) span { 
-    background-image: url(../images/i3.jpg);
-    -webkit-animation-delay: 12s;
-    -moz-animation-delay: 12s;
-    -o-animation-delay: 12s;
-    -ms-animation-delay: 12s;
-    animation-delay: 12s; 
-}
-.cb-slideshow li:nth-child(4) span { 
-    background-image: url(../images/i4.jpg);
-    -webkit-animation-delay: 18s;
-    -moz-animation-delay: 18s;
-    -o-animation-delay: 18s;
-    -ms-animation-delay: 18s;
-    animation-delay: 18s; 
 }
 .cb-slideshow li:nth-child(2) div { 
     -webkit-animation-delay: 6s;

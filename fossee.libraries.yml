@@ -4,5 +4,3 @@ global-css:
       css/style.css: {}
       css/header.css: {}
       css/fontawesome.css: {}
-  js:
-    js/main.js: {}
