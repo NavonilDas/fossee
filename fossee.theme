@@ -1,28 +1,12 @@
-<?php 
+<?php
 
-function fossee_preprocess_html(&$variables){
+function fossee_preprocess_html(&$variables)
+{
 
 }
 
-// function fossee_theme_suggestions_page(array $variables) {
-//     $path_args = explode('/', trim(\Drupal::service('path.current')->getPath(), '/'));
-//     $suggestions = theme_get_suggestions($path_args, 'page');
-//     $http_error_suggestions = [
-//       'system.401' => 'page__401',
-//       'system.403' => 'page__403',
-//       'system.404' => 'page__404',
-//     ];
-//     $route_name = \Drupal::routeMatch()->getRouteName();
-//     $route_name = \Drupal::request()->attributes->get('node');
-//     dpm($route_name);  
-//     if (isset($http_error_suggestions[$route_name])) { 
-//         $suggestions[] = $http_error_suggestions[$route_name];
-//     }
-  
-//     return $suggestions;
-//   }
-
-function fossee_preprocess_page(&$variables, $hook) {
+function fossee_preprocess_page(&$variables, $hook)
+{
     global $base_url;
     $variables['base_url'] = $base_url;
     $http_error_suggestions = [
@@ -32,138 +16,147 @@ function fossee_preprocess_page(&$variables, $hook) {
     ];
     $route_name = \Drupal::routeMatch()->getRouteName();
     $variables['errpage'] = array(
-        'is'=>0,
-        'no'=>''
+        'is' => 0,
+        'no' => '',
     );
-    if(isset($http_error_suggestions[$route_name])){
+    if (isset($http_error_suggestions[$route_name])) {
         $variables['errpage'] = array(
-            'is'=>1,
-            'no'=>str_replace('system.','',$route_name)
+            'is' => 1,
+            'no' => str_replace('system.', '', $route_name),
         );
         return;
     }
-    $cur_url = \Drupal::service('path.current')->getPath();
+
+    // $cur_url = \Drupal::service('path.current')->getPath();
+    $isF = \Drupal::service('path.matcher')->isFrontPage();
+    // dpm($isF);
     $blocks = array(
-        'scilab'=>array(
-            'title'=>'Scilab',
-            'description'=>'Scilab is a free and open source software for numerical computation developed by Scilab Enterprises, France. Scilab also includes Xcos which is an open source alternative to Simulink.',
-            'icon'=>'scilab.png',
-            'enabled'=>fossee_theme_get_settings('scilab_blck',1)
+        'scilab' => array(
+            'title' => 'Scilab',
+            'description' => 'Scilab is a free and open source software for numerical computation developed by Scilab Enterprises, France. Scilab also includes Xcos which is an open source alternative to Simulink.',
+            'icon' => 'scilab.png',
+            'enabled' => fossee_theme_get_settings('scilab_blck', 1),
         ),
-        'python'=>array(
-            'title'=>'Python',
-            'description'=>'Python is a general-purpose, high-level, remarkably powerful dynamic programming language that is used in a wide variety of application domains. It supports multiple programming paradigms.',
-            'icon'=>'python.png',
-            'enabled'=>fossee_theme_get_settings('python_blck',1)
+        'python' => array(
+            'title' => 'Python',
+            'description' => 'Python is a general-purpose, high-level, remarkably powerful dynamic programming language that is used in a wide variety of application domains. It supports multiple programming paradigms.',
+            'icon' => 'python.png',
+            'enabled' => fossee_theme_get_settings('python_blck', 1),
         ),
-        'esim'=>array(
-            'title'=>'eSim',
-            'description'=>'eSim (formerly known as Oscad/FreeEDA) is an EDA tool for circuit design, simulation, analysis and PCB design. It is developed by the FOSSEE team at IIT Bombay as an open source alternative to OrCAD. ',
-            'icon'=>'esim.png',
-            'enabled'=>fossee_theme_get_settings('esim_blck',1)
+        'esim' => array(
+            'title' => 'eSim',
+            'description' => 'eSim (formerly known as Oscad/FreeEDA) is an EDA tool for circuit design, simulation, analysis and PCB design. It is developed by the FOSSEE team at IIT Bombay as an open source alternative to OrCAD. ',
+            'icon' => 'esim.png',
+            'enabled' => fossee_theme_get_settings('esim_blck', 1),
         ),
-        'osdag'=>array(
-            'title'=>'Osdag',
-            'description'=>"Osdag is a free and open-source software which allows the user to design steel structures using a graphical user interface. The GUI also provides 3D visualization of the designed component and images",
-            'icon'=>'osdag.png',
-            'enabled'=>fossee_theme_get_settings('osdag_blck',1)
+        'osdag' => array(
+            'title' => 'Osdag',
+            'description' => "Osdag is a free and open-source software which allows the user to design steel structures using a graphical user interface. The GUI also provides 3D visualization of the designed component and images",
+            'icon' => 'osdag.png',
+            'enabled' => fossee_theme_get_settings('osdag_blck', 1),
         )
         ,
-        'dwsim'=>array(
-            'title'=>'DWSIM',
-            'description'=>'DWSIM is an open source CAPE-OPEN compliant chemical process simulator. Helps understand the behavior of Chemical Systems by using rigorous thermodynamic and unit operations models.',
-            'icon'=>'dwsim.png',
-            'enabled'=>fossee_theme_get_settings('dwsim_blck',1)
+        'dwsim' => array(
+            'title' => 'DWSIM',
+            'description' => 'DWSIM is an open source CAPE-OPEN compliant chemical process simulator. Helps understand the behavior of Chemical Systems by using rigorous thermodynamic and unit operations models.',
+            'icon' => 'dwsim.png',
+            'enabled' => fossee_theme_get_settings('dwsim_blck', 1),
         ),
-        'openfoam'=>array(
-            'title'=>'OpenFOAM',
-            'description'=>'penFOAM is a free and open source CFD toolbox useful to solve anything from complex fluid flows involving chemical reactions, turbulence and heat transfer, to solid dynamics and electromagnetics.',
-            'icon'=>'cfd.png',
-            'enabled'=>fossee_theme_get_settings('of_blck',1)
+        'openfoam' => array(
+            'title' => 'OpenFOAM',
+            'description' => 'penFOAM is a free and open source CFD toolbox useful to solve anything from complex fluid flows involving chemical reactions, turbulence and heat transfer, to solid dynamics and electromagnetics.',
+            'icon' => 'cfd.png',
+            'enabled' => fossee_theme_get_settings('of_blck', 1),
         ),
-        'om'=>array(
-            'title'=>'OpenModelica',
-            'description'=>'OpenModelica is a free and open source environment based on the Modelica modelling language for modelling, simulating, optimising and analysing complex dynamic systems. ',
-            'icon'=>'om.png',
-            'enabled'=>fossee_theme_get_settings('om_blck',1)
+        'om' => array(
+            'title' => 'OpenModelica',
+            'description' => 'OpenModelica is a free and open source environment based on the Modelica modelling language for modelling, simulating, optimising and analysing complex dynamic systems. ',
+            'icon' => 'om.png',
+            'enabled' => fossee_theme_get_settings('om_blck', 1),
         ),
-        'or'=>array(
-            'title'=>'OR-Tools',
-            'description'=>'Optimisation and Simulation are the areas of focus in the FOSSEE OR Tools project. The OR Tools include COIN-OR, GLPK etc, interfaced through open-source environments like Scilab and languages such as Python.',
-            'icon'=>'or.png',
-            'enabled'=>fossee_theme_get_settings('or_blck',1)
+        'or' => array(
+            'title' => 'OR-Tools',
+            'description' => 'Optimisation and Simulation are the areas of focus in the FOSSEE OR Tools project. The OR Tools include COIN-OR, GLPK etc, interfaced through open-source environments like Scilab and languages such as Python.',
+            'icon' => 'or.png',
+            'enabled' => fossee_theme_get_settings('or_blck', 1),
         ),
-        'sandhi'=>array(
-            'title'=>'Sandhi',
-            'description'=>'We are in process of migrating this to Xcos',
-            'icon'=>'sandhi.png',
-            'enabled'=>fossee_theme_get_settings('sandhi_blck',1)
+        'sandhi' => array(
+            'title' => 'Sandhi',
+            'description' => 'We are in process of migrating this to Xcos',
+            'icon' => 'sandhi.png',
+            'enabled' => fossee_theme_get_settings('sandhi_blck', 1),
         ),
-        'plc'=>array(
-            'title'=>'OpenPLC',
-            'description'=>'OpenPLC is a fully open source Programmable Logic Controller creating opportunities for people to study its concepts, explore new technologies and share the resources.',
-            'icon'=>'plc.png',
-            'enabled'=>fossee_theme_get_settings('plc_blck',1)
+        'plc' => array(
+            'title' => 'OpenPLC',
+            'description' => 'OpenPLC is a fully open source Programmable Logic Controller creating opportunities for people to study its concepts, explore new technologies and share the resources.',
+            'icon' => 'plc.png',
+            'enabled' => fossee_theme_get_settings('plc_blck', 1),
         ),
-        'sa'=>array(
-            'title'=>'Scilab-Arduino',
-            'description'=>'The Scilab-Arduino interface is devoted to the control of Arduino from Scilab. The interface helps the user to perform embedded systems experiments on Arduino board using scilab code  and also through GUI based simulation environment, Xcos.',
-            'icon'=>'sa.png',
-            'enabled'=>fossee_theme_get_settings('sa_blck',1)
+        'sa' => array(
+            'title' => 'Scilab-Arduino',
+            'description' => 'The Scilab-Arduino interface is devoted to the control of Arduino from Scilab. The interface helps the user to perform embedded systems experiments on Arduino board using scilab code  and also through GUI based simulation environment, Xcos.',
+            'icon' => 'sa.png',
+            'enabled' => fossee_theme_get_settings('sa_blck', 1),
         ),
-        'sbhs'=>array(
-            'title'=>'SBHS',
-            'description'=>'SBHS (Single Board Heater System) is a lab-in-a-box setup useful for teaching and learning control systems.',
-            'icon'=>'sbhs.png',
-            'enabled'=>fossee_theme_get_settings('sbhs_blck',1)
+        'sbhs' => array(
+            'title' => 'SBHS',
+            'description' => 'SBHS (Single Board Heater System) is a lab-in-a-box setup useful for teaching and learning control systems.',
+            'icon' => 'sbhs.png',
+            'enabled' => fossee_theme_get_settings('sbhs_blck', 1),
         ),
-        'r'=>array(
-            'title'=>'R',
-            'description'=>'R is a language and environment for statistical computing and graphics.',
-            'icon'=>'rlogof.png',
-            'enabled'=>fossee_theme_get_settings('r_blck',1)
+        'r' => array(
+            'title' => 'R',
+            'description' => 'R is a language and environment for statistical computing and graphics.',
+            'icon' => 'rlogof.png',
+            'enabled' => fossee_theme_get_settings('r_blck', 1),
         ),
     );
     $variables['projects'] = $blocks;
     $connection = \Drupal::database();
-    $query = $connection->query('SELECT title,link__uri FROM menu_link_content_data WHERE parent is NULL AND menu_name=:arg ORDER by weight asc ',array(
-        ':arg'=>'main'
+    $query = $connection->query('SELECT title,link__uri FROM menu_link_content_data WHERE parent is NULL AND menu_name=:arg ORDER by weight asc ', array(
+        ':arg' => 'main',
     ));
     $variables['main_menu'] = $query->fetchAll();
-    $variables['anim_imgs'] = array();
-    
-    $val = theme_get_setting('fossee_img_one');
-    $variables['anim_imgs']['img_one'] = array(
-        'url'=>($val == NULL || $val == '')?'':$val,
-        'def'=>($val == NULL || $val == '')?0:1
-    );
+    if ($isF == true || $isF == 1) {
+        $variables['anim_imgs'] = array();
 
-    $val = theme_get_setting('fossee_img_two');
-    $variables['anim_imgs']['img_one'] = array(
-        'url'=>($val == NULL || $val == '')?'':$val,
-        'def'=>($val == NULL || $val == '')?0:1
-    );
+        $val = theme_get_setting('fossee_img_one');
+        $variables['anim_imgs']['img_one'] = array(
+            'url' => ($val == null || $val == '') ? '' : $val,
+            'def' => ($val == null || $val == '') ? 0 : 1,
+        );
 
-    $val = theme_get_setting('fossee_img_three');
-    $variables['anim_imgs']['img_one'] = array(
-        'url'=>($val == NULL || $val == '')?'':$val,
-        'def'=>($val == NULL || $val == '')?0:1
-    );
+        $val = theme_get_setting('fossee_img_two');
+        $variables['anim_imgs']['img_one'] = array(
+            'url' => ($val == null || $val == '') ? '' : $val,
+            'def' => ($val == null || $val == '') ? 0 : 1,
+        );
 
-    $val = theme_get_setting('fossee_img_four');
-    $variables['anim_imgs']['img_one'] = array(
-        'url'=>($val == NULL || $val == '')?'':$val,
-        'def'=>($val == NULL || $val == '')?0:1
-    );
+        $val = theme_get_setting('fossee_img_three');
+        $variables['anim_imgs']['img_one'] = array(
+            'url' => ($val == null || $val == '') ? '' : $val,
+            'def' => ($val == null || $val == '') ? 0 : 1,
+        );
+
+        $val = theme_get_setting('fossee_img_four');
+        $variables['anim_imgs']['img_one'] = array(
+            'url' => ($val == null || $val == '') ? '' : $val,
+            'def' => ($val == null || $val == '') ? 0 : 1,
+        );
+    }
 }
 
-function fossee_theme_get_settings($key,$default){
+function fossee_theme_get_settings($key, $default)
+{
     $val = theme_get_setting($key);
-    if($val == NULL || $val == '')
+    if ($val == null || $val == '') {
         return $default;
+    }
+
     return $val;
 }
 
-function fossee_preprocess_menu(&$variables, $hook) {
-    
+function fossee_preprocess_menu(&$variables, $hook)
+{
+
 }

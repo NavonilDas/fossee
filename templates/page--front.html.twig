@@ -15,9 +15,9 @@
 
     <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
       <div class="section layout-container clearfix">
-        {{ page.secondary_menu }}
+        {# {{ page.secondary_menu }} #}
         {{ page.header }}
-        {{ page.primary_menu }}
+        {# {{ page.primary_menu }} #}
       </div>
     </header>
     
@@ -488,6 +488,6 @@
     </div>
 
         <script src="{{ base_url }}/{{ directory }}/js/main.js"></script>
-
+        <div id="alwaystop">{{ page.header }}</div>
   </div>
 </div>

@@ -5,15 +5,25 @@ use Drupal\Core\Form\FormStateInterface;
 function fossee_form_system_theme_settings_alter(&$form, &$form_state)
 {
 
+    // dpm( \Drupal::config('fossee.settings')->get('themessage'));
+
     $form['front_page_blck'] = array(
         '#type' => 'details',
-        '#title' => t('Front Page Cards'),
+        '#title' => t('Extra Cards'),
         '#description' => t('Select Wether to enable or disable Block.'),
         '#weight' => -1000,
-        '#open' => true,
+        // '#open' => true,
+    );
+####Scilab
+    $form['type_scilab'] = array(
+        '#type' => 'details',
+        '#title' => t('Scilab'),
+        '#description' => t('Scilab.'),
+        '#weight' => -1000,
+        // '#open' => true,
     );
 
-    $form['front_page_blck']['scilab_blck'] = array(
+    $form['type_scilab']['scilab_blck'] = array(
         '#type' => 'radios',
         '#title' => t('Scilab Card'),
         '#default_value' => fossee_theme_get_settings('scilab_blck', 1),
@@ -22,6 +32,159 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
             1 => t('Enabled'),
         ),
     );
+
+    $form['type_scilab']['sci_text'] = array(
+        '#type' => 'radios',
+        '#title' => t('Textbook Companion'),
+        '#default_value' => fossee_theme_get_settings('sci_text', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+
+    $form['type_scilab']['sci_lab'] = array(
+        '#type' => 'radios',
+        '#title' => t('Lab Migration'),
+        '#default_value' => fossee_theme_get_settings('sci_lab', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+####Scilab
+
+####eSim
+    $form['type_esim'] = array(
+        '#type' => 'details',
+        '#title' => t('eSim'),
+        '#description' => t('esim.'),
+        '#weight' => -1000,
+        // '#open' => true,
+    );
+    $form['type_esim']['esim_text'] = array(
+        '#type' => 'radios',
+        '#title' => t('Textbook Companion'),
+        '#default_value' => fossee_theme_get_settings('esim_text', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+
+    $form['type_esim']['sci_lab'] = array(
+        '#type' => 'radios',
+        '#title' => t('Lab Migration'),
+        '#default_value' => fossee_theme_get_settings('esim_lab', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+    $form['type_esim']['esim_blck'] = array(
+        '#type' => 'radios',
+        '#title' => t('eSim Card'),
+        '#default_value' => fossee_theme_get_settings('esim_blck', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+####
+
+######################DWSIM
+    $form['type_dwsim'] = array(
+        '#type' => 'details',
+        '#title' => t('DWSIM'),
+        '#description' => t('esim.'),
+        '#weight' => -1000,
+        // '#open' => true,
+    );
+    $form['type_dwsim']['dwsim_lab'] = array(
+        '#type' => 'radios',
+        '#title' => t('Lab Migration'),
+        '#default_value' => fossee_theme_get_settings('dwsim_lab', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+    $form['type_dwsim']['dwsim_blck'] = array(
+        '#type' => 'radios',
+        '#title' => t('DWSIM Card'),
+        '#default_value' => fossee_theme_get_settings('dwsim_blck', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+#####################
+
+####OpenFoam
+    $form['type_openf'] = array(
+        '#type' => 'details',
+        '#title' => t('OpenFOAM'),
+        '#description' => t('OpenFOAM.'),
+        '#weight' => -1000,
+        // '#open' => true,
+    );
+    $form['type_openf']['openf_text'] = array(
+        '#type' => 'radios',
+        '#title' => t('Textbook Companion'),
+        '#default_value' => fossee_theme_get_settings('openf_text', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+    $form['type_openf']['openf_lab'] = array(
+        '#type' => 'radios',
+        '#title' => t('Lab Migration'),
+        '#default_value' => fossee_theme_get_settings('openf_lab', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+    $form['type_openf']['of_blck'] = array(
+        '#type' => 'radios',
+        '#title' => t('openFOAM Card'),
+        '#default_value' => fossee_theme_get_settings('of_blck', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+####OpenFoam
+
+####OR-TOOLs
+    $form['type_or'] = array(
+        '#type' => 'details',
+        '#title' => t('Or Tools'),
+        '#description' => t('Or Tools.'),
+        '#weight' => -1000,
+        // '#open' => true,
+    );
+    $form['type_or']['or_blck'] = array(
+        '#type' => 'radios',
+        '#title' => t('Or Tools Card'),
+        '#default_value' => fossee_theme_get_settings('or_blck', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+    $form['type_or']['or_text'] = array(
+        '#type' => 'radios',
+        '#title' => t('Textbook Companion'),
+        '#default_value' => fossee_theme_get_settings('or_text', 1),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
+####
+
     $form['front_page_blck']['python_blck'] = array(
         '#type' => 'radios',
         '#title' => t('Python Card'),
@@ -31,15 +194,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
             1 => t('Enabled'),
         ),
     );
-    $form['front_page_blck']['esim_blck'] = array(
-        '#type' => 'radios',
-        '#title' => t('eSim Card'),
-        '#default_value' => fossee_theme_get_settings('esim_blck', 1),
-        '#options' => array(
-            0 => t('Disabled'),
-            1 => t('Enabled'),
-        ),
-    );
+
     $form['front_page_blck']['osdag_blck'] = array(
         '#type' => 'radios',
         '#title' => t('Osdag Card'),
@@ -49,37 +204,11 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
             1 => t('Enabled'),
         ),
     );
-    $form['front_page_blck']['dwsim_blck'] = array(
-        '#type' => 'radios',
-        '#title' => t('DWSIM Card'),
-        '#default_value' => fossee_theme_get_settings('dwsim_blck', 1),
-        '#options' => array(
-            0 => t('Disabled'),
-            1 => t('Enabled'),
-        ),
-    );
-    $form['front_page_blck']['of_blck'] = array(
-        '#type' => 'radios',
-        '#title' => t('openFOAM Card'),
-        '#default_value' => fossee_theme_get_settings('of_blck', 1),
-        '#options' => array(
-            0 => t('Disabled'),
-            1 => t('Enabled'),
-        ),
-    );
+
     $form['front_page_blck']['om_blck'] = array(
         '#type' => 'radios',
         '#title' => t('OpenModelica Card'),
         '#default_value' => fossee_theme_get_settings('om_blck', 1),
-        '#options' => array(
-            0 => t('Disabled'),
-            1 => t('Enabled'),
-        ),
-    );
-    $form['front_page_blck']['or_blck'] = array(
-        '#type' => 'radios',
-        '#title' => t('Or Tools Card'),
-        '#default_value' => fossee_theme_get_settings('or_blck', 1),
         '#options' => array(
             0 => t('Disabled'),
             1 => t('Enabled'),
@@ -134,37 +263,11 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
     $form['#prefix'] = '<div id="sponsorship-form-wrapper">';
     $form['#suffix'] = '</div>';
 
-    $form['sponsor'] = [
-        '#type' => 'fieldset',
-        // '#title' => t('You (sponsor)'),
-        '#prefix' => '<div class="quick-contact__form col-xs-12 col-md-6">',
-        '#suffix' => '</div>',
-    ];
+    $no_imgs = $form_state->get('no_imgs');
 
-    $form['sponsor']['submit'] = [
-        '#type' => 'submit',
-        '#value' => t('Send'),
-        '#attributes' => [
-            'class' => ['btn btn-full'],
-        ],
-        '#ajax' => array(
-            'wrapper' => 'sponsorship-form-wrapper',
-            'callback' => 'ajaxRebuildForm',
-            'effect' => 'fade',
-            'progress' => array('message' => '', 'type' => 'throbber'),
-        ),
-    ];
-
-    $nb_sponsee = $form_state->get('nb_sponsee');
-    $form['sponsees'] = [
-        '#type' => 'container',
-        '#prefix' => '<div id="sponsees-fieldset-wrapper" class="quick-contact__form col-xs-12 col-md-6">',
-        '#suffix' => '</div>',
-    ];
-
-    if (empty($nb_sponsee)) {
-        $nb_sponsee = 1;
-        $form_state->set('nb_sponsee', $nb_sponsee);
+    if (empty($no_imgs)) {
+        $no_imgs = 1;
+        $form_state->set('no_imgs', $no_imgs);
     }
 
     $form['anim_imgs'] = array(
@@ -173,25 +276,75 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#open' => true,
         '#title' => 'Animation Images',
     );
-    for ($i = 0; $i < $nb_sponsee; $i++) {
-        $form['anim_imgs']['img'] = array(
-            '#type' => 'file',
-        );
-    }
 
-    if ($nb_sponsee < 6) {
-        $form['anim_imgs']['add_sponsee'] = [
-            '#type' => 'submit',
-            '#value' => t('Add Image'),
-            '#submit' => array('addSponcee'),
-            '#ajax' => [
-                'callback' => 'addSponceeCallback',
-                'wrapper' => 'sponsees-fieldset-wrapper',
-            ],
-        ];
-    }
+    $form['anim_imgs']['thecontainer'] = [
+        '#type' => 'container',
+        '#prefix' => '<div id="thecontainer--wrapper">',
+        '#suffix' => '</div>',
+    ];
 
+    $form['anim_imgs']['thecontainer']['table'] = array('#markup' => '<table>');
+    for ($i = 0; $i < $no_imgs; $i++) {
+        $val = $form_state->get("uploaded_anim_img_" . $i);
+        if ($form_state->get('anim_img_' . $i) !== false) {
+            $form['anim_imgs']['thecontainer']['anim_img_' . $i] = array(
+                '#type' => 'file',
+                '#description' => $val,
+                '#prefix' => '<tr><td>',
+                '#attributes' => (empty($val)) ? array() : array('disabled' => true),
+                '#suffix' => '</td>',
+            );
+            $form['anim_imgs']['thecontainer']['img_delete_' . $i] = array(
+                '#type' => 'submit',
+                '#name' => 'img_delete_' . $i,
+                '#value' => 'Delete',
+                '#prefix' => '<td>',
+                '#suffix' => '</td></tr>',
+                '#submit' => array('imageDelete'),
+                '#ajax' => array(
+                    'callback' => 'addImgCallback',
+                    'wrapper' => 'thecontainer--wrapper',
+                ),
+            );
+        }
+    }
+    $form['anim_imgs']['thecontainer']['tablee'] = array('#markup' => '</table>');
+
+    $form['anim_imgs']['thecontainer']['add_img_btn'] = [
+        '#type' => 'submit',
+        '#value' => t('Add Image'),
+        '#submit' => array('addImage'),
+        '#ajax' => [
+            'callback' => 'addImgCallback',
+            'wrapper' => 'thecontainer--wrapper',
+        ],
+    ];
+
+    $form['fossee_logo'] = array(
+        '#type' => 'details',
+        '#title' => t('Logo'),
+        '#description' => t('Select the logo.'),
+        '#weight' => -1000,
+        '#open' => true,
+    );
+
+    $form['fossee_logo']['the_logo'] = array(
+        '#type' => 'file',
+        '#title' => 'Upload Logo img',
+    );
+
+    $form['#submit'][] = 'fossee_form_submit';
     return $form;
+}
+
+function imageDelete(array &$form, FormStateInterface $form_state)
+{
+    $tg = $form_state->getTriggeringElement();
+    if ($tg != null) {
+        $ind = (int) str_replace("img_delete_", "", $tg['#name']);
+        $form_state->set("anim_img_" . $ind, false);
+    }
+    $form_state->setRebuild();
 }
 
 function ajaxRebuildForm(array &$form, FormStateInterface $form_state)
@@ -199,13 +352,63 @@ function ajaxRebuildForm(array &$form, FormStateInterface $form_state)
     return $form;
 }
 
-function addSponceeCallback(array &$form, FormStateInterface $form_state)
+function addImgCallback(array &$form, FormStateInterface $form_state)
 {
-    return $form['anim_imgs']['img'];
+    return $form['anim_imgs']['thecontainer'];
 }
 
-function addSponcee(array &$form, FormStateInterface $form_state)
+function addImage(array &$form, FormStateInterface $form_state)
 {
-    $form_state->set('nb_sponsee', $form_state->get('nb_sponsee') + 1);
+    $ind = $form_state->get('no_imgs');
+    $form_state->set('no_imgs', $ind + 1);
+    $imgValidator = array(
+        'file_validate_size' => array(
+            '2097152',
+        ),
+        'file_validate_extension' => array(
+            'png jpg bmp jpeg gif',
+        ),
+    );
+    $key = 'anim_img_' . ($ind - 1);
+    if ($imgFile = file_save_upload((string) $key, $imgValidator, "public://", FILE_EXISTS_RENAME)) {
+        $form_state->set('uploaded_' . $key, $imgFile->destination);
+    }
     $form_state->setRebuild();
+}
+
+function fossee_form_submit(array &$form, FormStateInterface $form_state)
+{
+    $all = $form_state->get('no_imgs');
+    $imgValidator = array(
+        'file_validate_size' => array(
+            '2097152',
+        ),
+        'file_validate_extension' => array(
+            'png jpg bmp jpeg gif',
+        ),
+    );
+    $connection = \Drupal::database();
+    $config = \Drupal::configFactory()->getEditable('fossee.settings');
+    if ($imgFile = file_save_upload('the_logo', $imgValidator, "public://", FILE_EXISTS_RENAME)) {
+        $config->set("the_logo", $imgFile->destination);
+    }
+    $key = 'anim_img_' . ($all - 1);
+    if ($imgFile = file_save_upload((string) $key, $imgValidator, "public://", FILE_EXISTS_RENAME)) {
+        $form_state->set('uploaded_' . $key, $imgFile->destination);
+    }
+    $k = 0;
+    for ($i = 0; $i < $all; $i++) {
+        if ($form_state->get('anim_img_' . $i) !== false) {
+            $val = $form_state->get("uploaded_anim_img_" . $i);
+            $key = 'anim_img_' . $i;
+            $config->set((string) $key, $val);
+            $k++;
+        } else {
+            $val = $form_state->get("uploaded_anim_img_" . $i);
+            $fid = $connection->query("DELETE FROM {file_managed} WHERE uri = :path", array(':path' => $val));
+            $ret = unlink(str_replace('public://', 'sites/default/files/', $val));
+        }
+    }
+    $config->set('anim_all', $k);
+    $config->save();
 }
