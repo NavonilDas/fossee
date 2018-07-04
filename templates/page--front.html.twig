@@ -1,17 +1,7 @@
 <div id="page-wrapper">
   <div id="page">
     
-    <div id="fosseeheader">
-        <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
-        <div id="mainMenu">
-            <ul>
-              {% for item in main_menu %}
-                <li><a href="{{ item.link__uri }}">{{ item.title }}</a></li>
-              {% endfor %}
-            </ul>
-        </div>
-        <label for="" id="toggle" onclick="showNavBar()">&#9776;</label>
-      </div>
+
 
     <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
       <div class="section layout-container clearfix">
@@ -235,31 +225,31 @@
                 <li class="active" onclick="changeActivities(this,1)">
                     <center>
                         <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_05a.png" alt="">
-                        <br> Textbook Companion</center>
+                        <br> <p>Textbook Companion</p></center>
                 </li>
 
                 <li onclick="changeActivities(this,2)">
                     <center>
                         <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_04a.png" alt="">
-                        <br> Lab Migration</center>
+                        <br> <p>Lab Migration</p></center>
                 </li>
 
                 <li onclick="changeActivities(this,3)">
                     <center>
                         <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_02a.png" alt="">
-                        <br> SELF Workshops </center>
+                        <br> <p>SELF Workshops</p> </center>
                 </li>
 
                 <li onclick="changeActivities(this,4)">
                     <center>
                         <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_01a.png" alt="">
-                        <br> Forum </center>
+                        <br> <p>Forum</p> </center>
                 </li>
 
                 <li onclick="changeActivities(this,5)">
                     <center>
                         <img class="img" src="{{ base_url }}/{{ directory }}/images/activities/act_03a.png" alt="">
-                        <br> Workshops &amp; Conferences </center>
+                        <br> <p>Workshops &amp; Conferences</p> </center>
                 </li>
             </ul>
 
@@ -279,22 +269,23 @@
                             </ol>
                             <h4>This internship is available for the following FOSS supported by FOSSEE: </h4>
                             <table class="table table-bordered" style="width:80%">
+                                {% if sci_text == 1 %}
                                 <tr class="active">
                                     <td>
                                         <a href="https://www.scilab.in/Textbook_Companion_Project" target="_blank">
                                             Scilab
                                         </a>
                                     </td>
-
                                 </tr>
+                                {% endif %}
                                 <tr class="success">
                                     <td>
                                         <a href="https://python.fossee.in/textbook-companion-project/" target="_blank">
                                             Python
                                         </a>
                                     </td>
-
                                 </tr>
+                                {% if esim_text == 1 %}
                                 <tr class="info">
                                     <td>
                                         <a href="https://esim.fossee.in/textbook-companion-project" target="_blank">
@@ -303,14 +294,18 @@
                                     </td>
 
                                 </tr>
+                                {% endif %}
+                                {% if openf_text == 1 %}
                                 <tr class="warning">
                                     <td>
                                         <a href="https://cfd.fossee.in/textbook-companion-project" target="_blank">
                                             OpenFOAM
                                         </a>
                                     </td>
-
                                 </tr>
+                                {% endif %}
+                                
+                                {% if or_text == 1 %}
                                 <tr class="active">
                                     <td width="50%">
                                         <a href="https://or.fossee.in/textbook-companion" target="_blank">
@@ -319,14 +314,18 @@
                                     </td>
 
                                 </tr>
+                                {% endif %}
+                                
+                                {% if dwsim_text == 1 %}
                                 <tr class="success">
                                     <td>
                                         <a href="https://dwsim.fossee.in/textbook-companion-project" target="_blank">
                                             DWSIM
                                         </a>
                                     </td>
-
                                 </tr>
+                                {% endif %}
+
                             </table>
                 </div>
                 <div class="tab-pane" id="b" style="display: none;">
@@ -345,30 +344,36 @@
                     <h4>We currently offer Lab Migration for the following FOSS:</h4>
                     <table class="table table-bordered" style="width:80%">
                         <tbody>
+                            {% if sci_lab == 1 %}
                             <tr class="active">
+                                
                                 <td>
                                     <a href="https://scilab.in/Lab_Migration_Project" target="_blank">
                                         Scilab
                                     </a>
                                 </td>
                             </tr>
+                            {% endif %}
 
+                            {% if esim_lab == 1 %}
                             <tr class="info">
                                 <td>
                                     <a href="https://esim.fossee.in/lab-migration-project" target="_blank">
                                         eSim
                                     </a>
                                 </td>
-
                             </tr>
+                            {% endif %}
+
+                            {% if openf_lab == 1 %}
                             <tr class="warning">
                                 <td>
                                     <a href="https://cfd.fossee.in/lab-migration-project" target="_blank">
                                         OpenFOAM
                                     </a>
                                 </td>
-
                             </tr>
+                            {% endif %}
 
 
                         </tbody>
@@ -408,7 +413,7 @@
 
 
 
-    <div id="footer">
+    {# <div id="footer">
         <div id="poster" style="grid-area: poster;">
             <h2>Poster</h2>
             <img src="{{ base_url }}/{{ directory }}/images/portfolios/poster.png" alt="">
@@ -485,9 +490,9 @@
                 <i class="fa fa-github"></i>
             </div>
         </div>
-    </div>
+    </div> #}
 
         <script src="{{ base_url }}/{{ directory }}/js/main.js"></script>
-        <div id="alwaystop">{{ page.header }}</div>
+        {# <div id="alwaystop">{{ page.header }}</div> #}
   </div>
 </div>

@@ -1,12 +1,5 @@
-(function ($) {
-    $(function () {
-        $.fn.alertMess = function(data){
-            alert(data);
-        }
-    });
-})(jQuery);
-
 var navbar_showing = false;
+
 function showNavBar() {
     if (!navbar_showing) {
         document.getElementById("sideNavBar").style.width = "75%"; // set the width to 250px

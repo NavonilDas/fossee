@@ -29,6 +29,21 @@
   </div>
 {% else %}
 
+  <style>
+      @import url("{{ base_url }}/{{ directory }}/css/bootstrap.min.css");
+  </style>
+
+    {# <div id="fosseeheader">
+        <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
+        <div id="mainMenu">
+            <ul>
+              {% for item in main_menu %}
+                <li><a href="{{ item.link__uri }}">{{ item.title }}</a></li>
+              {% endfor %}
+            </ul>
+        </div>
+        <label for="" id="toggle" onclick="showNavBar()">&#9776;</label>
+      </div> #}
 
 <div class="layout-container">
 
@@ -65,12 +80,6 @@
     {% endif %}
 
   </main>
-
-  {% if page.footer %}
-    <footer role="contentinfo">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
-
 </div>
+
 {% endif %}

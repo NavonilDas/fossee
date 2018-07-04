@@ -72,7 +72,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         ),
     );
 
-    $form['type_esim']['sci_lab'] = array(
+    $form['type_esim']['esim_lab'] = array(
         '#type' => 'radios',
         '#title' => t('Lab Migration'),
         '#default_value' => fossee_theme_get_settings('esim_lab', 1),
@@ -100,10 +100,10 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#weight' => -1000,
         // '#open' => true,
     );
-    $form['type_dwsim']['dwsim_lab'] = array(
+    $form['type_dwsim']['dwsim_text'] = array(
         '#type' => 'radios',
-        '#title' => t('Lab Migration'),
-        '#default_value' => fossee_theme_get_settings('dwsim_lab', 1),
+        '#title' => t('Textbook Companion'),
+        '#default_value' => fossee_theme_get_settings('dwsim_text', 1),
         '#options' => array(
             0 => t('Disabled'),
             1 => t('Enabled'),
