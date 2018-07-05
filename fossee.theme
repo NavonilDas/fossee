@@ -9,6 +9,22 @@ function fossee_preprocess_html(&$variables)
         ':arg' => 'main',
     ));
     $variables['main_menu'] = $query->fetchAll();
+    $http_error_suggestions = [
+        'system.401' => 1,
+        'system.403' => 1,
+        'system.404' => 1,
+    ];
+    $route_name = \Drupal::routeMatch()->getRouteName();
+    $variables['errpage'] = array(
+        'is' => 0,
+        'no' => '',
+    );
+    if (isset($http_error_suggestions[$route_name])) {
+        $variables['errpage'] = array(
+            'is' => 1,
+            'no' => str_replace('system.', '', $route_name),
+        );
+    }
 }
 
 function fossee_preprocess_page(&$variables, $hook)
@@ -170,11 +186,8 @@ function fossee_theme_get_settings($key, $default)
     if ($val == null || $val == '') {
         return $default;
     }
-
     return $val;
 }
 
 function fossee_preprocess_menu(&$variables, $hook)
-{
-
-}
+{}

@@ -10,6 +10,7 @@
     <js-placeholder token="{{ placeholder_token }}">
   </head>
   <body{{ attributes }}>
+  {% if errpage.is == 0 %}
       <div id="fosseeheader">
         <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
         <div id="mainMenu">
@@ -21,6 +22,7 @@
         </div>
         <label for="" id="toggle" onclick="showNavBar()">&#9776;</label>
     </div>
+    {% endif %}
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
@@ -33,6 +35,7 @@
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token }}">
 
+        {% if errpage.is == 0 %}
        <div id="footer">
         <div id="poster" style="grid-area: poster;">
             <h2>Poster</h2>
@@ -95,22 +98,22 @@
         </div>
         <div id="icons">
             <div>
-                <i class="fa fa-signal"></i>
+                <a href="https://fossee.in/data/project-statistics.php"><i class="fa fa-signal"></i></a>
             </div>
             <div>
-                <i class="fa fa-facebook"></i>
+                 <a href="https://www.facebook.com/FOSSEE-894448903953823/?fref=ts"><i class="fa fa-facebook"></i></a>
             </div>
             <div>
-                <i class="fa fa-twitter"></i>
+                 <a href="https://twitter.com/FOSSEENMEICT"><i class="fa fa-twitter"></i></a>
             </div>
             <div>
-                <i class="fa fa-youtube"></i>
+                 <a href="https://www.youtube.com/channel/UCMtt6exSCmZI7JU73S6Wz_A"><i class="fa fa-youtube"></i></a>
             </div>
             <div>
-                <i class="fa fa-github"></i>
+                 <a href="https://github.com/orgs/FOSSEE/dashboard"><i class="fa fa-github"></i></a>
             </div>
         </div>
     </div>
-
+    {% endif %}
   </body>
 </html>

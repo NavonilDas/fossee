@@ -181,12 +181,16 @@
     display: grid;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+#footer #icons div a{
+    text-decoration: none;
+    color:#fff;
 }
 #footer #icons div:hover{
     font-size: 1em;
     background: rgb(11, 154, 211);
 }   
 #footer #cc{
-    grid-area:cc;
-    
+    grid-area:cc;   
 }
