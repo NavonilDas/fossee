@@ -10,6 +10,7 @@
     <js-placeholder token="{{ placeholder_token }}">
   </head>
   <body{{ attributes }}>
+
   {% if errpage.is == 0 %}
       <div id="fosseeheader">
         <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
@@ -23,18 +24,11 @@
         <label for="" id="toggle" onclick="showNavBar()">&#9776;</label>
     </div>
     {% endif %}
-    {#
-      Keyboard navigation/accessibility link to main content section in
-      page.html.twig.
-    #}
-    <a href="#main-content" class="visually-hidden focusable">
-      {{ 'Skip to main content'|t }}
-    </a>
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}
-    <js-bottom-placeholder token="{{ placeholder_token }}">
 
+    <js-bottom-placeholder token="{{ placeholder_token }}">
         {% if errpage.is == 0 %}
        <div id="footer">
         <div id="poster" style="grid-area: poster;">
@@ -88,7 +82,7 @@
             <img src="{{ base_url }}/{{ directory }}/images/iitb.png" alt="">
         </div>
         <div id="cc">
-            <p>This work is licensed under a
+            <p>This work is licensed under a 
                 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
                     Creative Commons Attribution-ShareAlike 4.0 International License</a>
                 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">

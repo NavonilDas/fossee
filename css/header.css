@@ -2,7 +2,6 @@
 #logo{
     float: left;
     height:60px;
-    /* width:180px; */
     background-color: white;
 }
 /* Header Of the Website*/
@@ -112,7 +111,6 @@
 }
 /* Footer Section */
 #footer{
-    position: relative;
     bottom:0;
     width:100%;
     background: linear-gradient(to right, #4c7099 0%,#e0701a 100%);
@@ -121,7 +119,8 @@
     color:#fff;
     text-align: center;
     font-size: 18px;
-    padding-top: 5vw;
+    padding-top: 5vh;
+    margin-top:7vh;
     z-index: 100;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;

@@ -14,7 +14,6 @@ regions:
   sidebar_first: first sidebar
   sidebar_second: second sidebar
   footer: items of footer
-  braedcrumbs: items of braedcrumbs
 
 libraries:
   - fossee/global-css

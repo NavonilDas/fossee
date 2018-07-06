@@ -32,20 +32,8 @@
 
   <style>
       @import url("{{ base_url }}/{{ directory }}/css/bootstrap.min.css");
+      @import url("{{ base_url }}/{{ directory }}/css/form.css");
   </style>
-
-    {# <div id="fosseeheader">
-        <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
-        <div id="mainMenu">
-            <ul>
-              {% for item in main_menu %}
-                <li><a href="{{ item.link__uri }}">{{ item.title }}</a></li>
-              {% endfor %}
-            </ul>
-        </div>
-        <label for="" id="toggle" onclick="showNavBar()">&#9776;</label>
-      </div> #}
-
 <div class="layout-container">
 
   <header role="banner">
@@ -55,15 +43,11 @@
   {{ page.primary_menu }}
   {{ page.secondary_menu }}
 
-  {{ page.breadcrumb }}
-
   {{ page.highlighted }}
 
   {{ page.help }}
 
   <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
     <div class="layout-content">
       {{ page.content }}
     </div>{# /.layout-content #}
@@ -71,6 +55,7 @@
     {% if page.sidebar_first %}
       <aside class="layout-sidebar-first" role="complementary">
         {{ page.sidebar_first }}
+        {{ dpm(page.sidebar_first) }}
       </aside>
     {% endif %}
 
