@@ -13,11 +13,11 @@
 
   {% if errpage.is == 0 %}
       <div id="fosseeheader">
-        <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
+        <a href="{{ base_url }}"><img src="{{ base_url }}/{{ the_logo }}" alt="" id="logo"></a>
         <div id="mainMenu">
             <ul>
               {% for item in main_menu %}
-                <li><a href="{{ item.link__uri }}">{{ item.title }}</a></li>
+                <li><a href="{{ item.link__uri|replace({'internal:': base_url }) }}">{{ item.title }}</a></li>
               {% endfor %}
             </ul>
         </div>

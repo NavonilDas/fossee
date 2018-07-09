@@ -25,6 +25,13 @@ function fossee_preprocess_html(&$variables)
             'no' => str_replace('system.', '', $route_name),
         );
     }
+    $the_logo = \Drupal::config('fossee.settings')->get('the_logo');
+    if (!empty($the_logo)) {
+        $variables['the_logo'] = str_replace('public://', 'sites/default/files/', $the_logo);
+    } else {
+        $variables['the_logo'] = 'themes/FOSSEE/images/logo.png';
+    }
+
 }
 
 function fossee_preprocess_page(&$variables, $hook)
@@ -57,7 +64,7 @@ function fossee_preprocess_page(&$variables, $hook)
         ':arg' => 'main',
     ));
     $variables['main_menu'] = $query->fetchAll();
-    
+
     if ($isF == true || $isF == 1) {
         $blocks = array(
             'scilab' => array(
@@ -141,43 +148,30 @@ function fossee_preprocess_page(&$variables, $hook)
             ),
         );
         $variables['projects'] = $blocks;
-        
-        $variables['sci_lab'] = fossee_theme_get_settings('sci_lab',1);
-        $variables['esim_lab'] = fossee_theme_get_settings('esim_lab',1);
-        $variables['openf_lab'] = fossee_theme_get_settings('openf_lab',1);
-        
-        $variables['sci_text'] = fossee_theme_get_settings('sci_text',1);
-        $variables['esim_text'] = fossee_theme_get_settings('esim_text',1);
-        $variables['openf_text'] = fossee_theme_get_settings('openf_text',1);
-        $variables['dwsim_text'] = fossee_theme_get_settings('dwsim_text',1);
-        $variables['or_text'] = fossee_theme_get_settings('or_text',1);
-        
-        $variables['anim_imgs'] = array();
 
-        $val = theme_get_setting('fossee_img_one');
-        $variables['anim_imgs']['img_one'] = array(
-            'url' => ($val == null || $val == '') ? '' : $val,
-            'def' => ($val == null || $val == '') ? 0 : 1,
-        );
+        $variables['sci_lab'] = fossee_theme_get_settings('sci_lab', 1);
+        $variables['esim_lab'] = fossee_theme_get_settings('esim_lab', 1);
+        $variables['openf_lab'] = fossee_theme_get_settings('openf_lab', 1);
 
-        $val = theme_get_setting('fossee_img_two');
-        $variables['anim_imgs']['img_one'] = array(
-            'url' => ($val == null || $val == '') ? '' : $val,
-            'def' => ($val == null || $val == '') ? 0 : 1,
-        );
+        $variables['sci_text'] = fossee_theme_get_settings('sci_text', 1);
+        $variables['esim_text'] = fossee_theme_get_settings('esim_text', 1);
+        $variables['openf_text'] = fossee_theme_get_settings('openf_text', 1);
+        $variables['dwsim_text'] = fossee_theme_get_settings('dwsim_text', 1);
+        $variables['or_text'] = fossee_theme_get_settings('or_text', 1);
+        $anim_imgs = $config->get("all_imgs");
+        if (count($anim_imgs) < 1) {
+            $anim_imgs = array("i1.jpg", "i2.jpg", "i3.jpg", "i4.jpg");
+            $variables['is_def_anim'] = true;
+        } else {
+            $variables['is_def_anim'] = false;
+        }
 
-        $val = theme_get_setting('fossee_img_three');
-        $variables['anim_imgs']['img_one'] = array(
-            'url' => ($val == null || $val == '') ? '' : $val,
-            'def' => ($val == null || $val == '') ? 0 : 1,
-        );
-
-        $val = theme_get_setting('fossee_img_four');
-        $variables['anim_imgs']['img_one'] = array(
-            'url' => ($val == null || $val == '') ? '' : $val,
-            'def' => ($val == null || $val == '') ? 0 : 1,
-        );
+        $variables['anim_imgs'] = $anim_imgs;
     }
+    $node = \Drupal::entityManager()->getStorage('node')->load(1);
+    $view_builder = \Drupal::entityManager()->getViewBuilder('node');
+    $variables['body_full'] = $node->body->view('full');
+    $variables['body_teaser'] = $node->body->view('teaser');
 }
 
 function fossee_theme_get_settings($key, $default)

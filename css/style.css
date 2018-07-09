@@ -259,7 +259,7 @@ body{
         background: #fff;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
-        z-index: 111;
+        z-index: 100;
     }
     .act-tabs li{
         font-size: 1em;
@@ -417,13 +417,17 @@ body{
   color:#ffffff;
   cursor: pointer;
 }
-
+#news ul li.active{
+    color:#4c7099;
+    background: #e9e6e6;    
+}
 #news ul li:hover{
   color:#4c7099;
   background: #d6caca;
 }
 #news .newscontent{
   padding: 0 0.5em 0 0.5em;
+  min-height: 250px;
 }
 .newscontent table tr a{
   color: #e3560a;
@@ -443,7 +447,29 @@ body{
   width: 80%;
   padding: 1em 0.4em 1em 0.2em;
 }
-
+#news .policycontent{
+    min-height: 250px;
+}
+#news .policycontent div{
+    margin: 10px;
+    background: radial-gradient(#c7c7c7,#473b3b);
+    min-height: 230px;
+    display: flex;
+}
+#news .policycontent div p{
+    margin: auto auto;
+    color: #fff;
+    width: 250px;
+    font-size:1.5em;
+    text-align: center;
+}
+#news .policycontent div i{
+    color:#fff;
+    font-size:3em;
+    padding: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px #c2c0c0;
+}
 /*theflex.css*/
 
 i.arrow {
@@ -554,7 +580,7 @@ i.arrow {
 
 #anim{
     position: relative;
-    top:60px;
+    top:var(--head);
     z-index: -10;
     width: 100%;
     height: calc(100vh - 60px);
@@ -656,22 +682,30 @@ i.arrow {
 }
 .layout-container{
     position: relative;
-    top:65px;
+    top:calc(var(--head) + 5px);
     min-height:calc(100vh - 65px);
     z-index: 100;
-    padding-bottom: 7vh;
     width:100%;
 }
 .layout-content{
     width: 70%;
     margin-right: 10%;
     float: right;
+    padding-bottom: 70px;
 }
-.layout-sidebar-first{
+aside.layout-sidebar-first{
     position: fixed;
+    display: none;
     height:200px;
     top:0;
     left: 0;
     width:100vw;
     z-index: 600;
+}
+a{
+    color:orange;
+    text-decoration:none;
+}
+a:hover{
+    color:blueviolet;
 }

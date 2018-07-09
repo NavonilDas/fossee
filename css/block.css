@@ -1,0 +1,37 @@
+#block-fossee-local-tasks{
+    border-bottom: 1px solid #000;
+    padding:0;
+}
+#block-fossee-local-tasks ul{
+    list-style-type: none;
+    white-space: nowrap;
+    margin-bottom:6px;
+}
+#block-fossee-local-tasks ul li{
+    display: inline-block;
+    cursor: pointer;
+}
+#block-fossee-local-tasks ul li a{
+    padding: 8px;
+    border-top-left-radius: 8px;
+    z-index: -1;
+    border-top-right-radius: 8px;
+}
+#block-fossee-local-tasks ul li a:hover{
+    background: lightgray;
+    color: #fff;
+}
+#block-fossee-local-tasks ul li a.is-active{
+    background-color: gray;
+    color:#fff;
+}
+
+.layout-sidebar-second{
+    width:20%;
+    float:right;
+}
+#scroll-container{
+    max-height: 200px;
+    overflow-y: auto;
+
+}

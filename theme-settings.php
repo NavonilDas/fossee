@@ -293,7 +293,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
             );
             $form['anim_imgs']['thecontainer']['up_img_del_' . $i] = array(
                 '#type' => 'submit',
-                '#name' => 'up_img_delete_'.$i,
+                '#name' => 'up_img_delete_' . $i,
                 '#value' => 'Delete',
                 '#prefix' => '<td>',
                 '#suffix' => '</td></tr>',
@@ -342,20 +342,65 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         ],
     ];
 
-    $form['fossee_logo'] = array(
+    $form['thdetail'] = array(
         '#type' => 'details',
         '#title' => t('Logo'),
-        '#description' => t('Select the logo.'),
+        '#description' => t('Select the logo and Save The Configuration.'),
         '#weight' => -1000,
         '#open' => true,
     );
-
-    $form['fossee_logo']['the_logo'] = array(
-        '#type' => 'file',
+    $form['thdetail']['tab'] = array('#markup' => '<table><tr><td>');
+    $settings_theme = $form_state->getBuildInfo()['args'][0];
+    $fid = theme_get_setting('the_img');
+    if (!empty($fid)) {
+        $my_logo = getFileName($fid[0]);
+    } else {
+        $my_logo = $config->get('the_logo');
+    }
+    $form['thdetail']['the_img'] = array(
+         '#type' => 'managed_file',
+        '#name' => 'the_img',
         '#title' => 'Upload Logo img',
+        '#description' => $my_logo,
+        '#progress_message' => t('Please wait...'),
+        '#progress_indicator' => 'bar',
+        '#upload_location' => 'public://',
+        '#attributes' => (empty($my_logo)) ? array() : array('disabled' => true),
+        '#upload_validators' => array(
+            'file_validate_extensions' => array('gif png jpg jpeg'),
+        ),
     );
+    if (!empty($my_logo)) {
+        $form['thdetail']['the_del'] = array(
+            '#type' => 'submit',
+            '#value' => 'Delete',
+            '#prefix' => '</td><td>',
+            '#submit' => array('fossee_logo_delete'),
+        );
+    }
+    $form['thdetail']['t1e'] = array('#markup' => '</td></tr></table>');
     $form['#submit'][] = 'fossee_form_submit';
     return $form;
+}
+
+function fossee_logo_delete(array &$form, FormStateInterface $form_state)
+{
+    $config = \Drupal::configFactory()->getEditable('fossee.settings');
+    $val = $config->get('the_logo');
+    $connection = \Drupal::database();
+    $fid = $connection->query("DELETE FROM {file_managed} WHERE uri = :path", array(':path' => $val));
+    $ret = unlink(str_replace('public://', 'sites/default/files/', $val));
+    $config->set('the_logo', '')->save();
+    drupal_set_message('Logo Deleted', 'status');
+}
+
+function getFileName($fid)
+{
+    $connection = \Drupal::database();
+    $val = $connection->query("SELECT uri FROM {file_managed} WHERE fid = " . $fid);
+    $ret = $val->fetchField();
+    \Drupal::configFactory()->getEditable('fossee.settings')->set('the_logo', $ret)->save();
+    return $ret;
 }
 
 function imageDelete(array &$form, FormStateInterface $form_state)
@@ -426,9 +471,7 @@ function fossee_form_submit(array &$form, FormStateInterface $form_state)
     $connection = \Drupal::database();
     $config = \Drupal::configFactory()->getEditable('fossee.settings');
     $imgs = $config->get("all_imgs");
-    if ($imgFile = file_save_upload('the_logo', $imgValidator, "public://", FILE_EXISTS_RENAME)) {
-        $config->set("the_logo", $imgFile->destination);
-    }
+    // dpm($config->get('the_logo'));
     $key = 'anim_img_' . ($all - 1);
     if ($imgFile = file_save_upload((string) $key, $imgValidator, "public://", FILE_EXISTS_RENAME)) {
         $form_state->set('uploaded_' . $key, $imgFile->destination);

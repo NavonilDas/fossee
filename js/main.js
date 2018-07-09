@@ -1,5 +1,5 @@
 var navbar_showing = false;
-
+// document.documentElement.style.setProperty('--your-variable', '#YOURCOLOR');
 function showNavBar() {
     if (!navbar_showing) {
         document.getElementById("sideNavBar").style.width = "75%"; // set the width to 250px
@@ -65,7 +65,7 @@ function changeActivities(el, n) {
     if (n == 5) e = 'e';
     document.getElementById(e).style = "display:block;";
 }
-function changeNews(n) {
+function changeNews(n,e) {
     if (n == 1) {
         document.getElementsByClassName("newscontent")[0].style = "display:block";
         document.getElementsByClassName("policycontent")[0].style = "display:none";
@@ -73,9 +73,15 @@ function changeNews(n) {
         document.getElementsByClassName("newscontent")[0].style = "display:none";
         document.getElementsByClassName("policycontent")[0].style = "display:block";
     }
+    var els = document.querySelectorAll('.tabs ul li');
+    for(var i=0;i<els.length;i++){
+        els[i].classList.remove("active");
+    }
+    e.classList.add('active');
 }
 
 setInterval(carousel, 7000);
+
 setInterval(function () {
 var el =  document.querySelector('#sidediv p');
 var ar = [
@@ -88,3 +94,8 @@ el.innerText = ar[text_index]+'.';
 text_index++;
 if(text_index > 3) text_index = 0;
 }, 5000);
+
+function MouseLeave(){
+    flex_stop_anim=false;
+    
+}

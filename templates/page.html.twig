@@ -31,8 +31,9 @@
 {% else %}
 
   <style>
-      @import url("{{ base_url }}/{{ directory }}/css/bootstrap.min.css");
+      @import url("{{ base_url }}/{{ directory }}/css/block.css");
       @import url("{{ base_url }}/{{ directory }}/css/form.css");
+      @import url("{{ base_url }}/{{ directory }}/css/bootstrap.css");
   </style>
 <div class="layout-container">
 
@@ -50,12 +51,11 @@
   <main role="main">
     <div class="layout-content">
       {{ page.content }}
-    </div>{# /.layout-content #}
+    </div>
 
     {% if page.sidebar_first %}
       <aside class="layout-sidebar-first" role="complementary">
         {{ page.sidebar_first }}
-        {{ dpm(page.sidebar_first) }}
       </aside>
     {% endif %}
 

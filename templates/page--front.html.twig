@@ -3,25 +3,23 @@
         <label onclick="closeBar()">&lsaquo;</label>
         <ul>
               {% for item in main_menu %}
-                <li><a href="{{ item.link__uri }}">{{ item.title }}</a></li>
+                <li><a href="{{ item.link__uri|replace({'internal:': base_url }) }}">{{ item.title }}</a></li>
               {% endfor %}
         </ul>
     </div>
 
+    {% if is_def_anim %}
+    {% set adir = directory ~ "/images/" %}
+    {% else %}
+    {% set adir = '' %}
+    {% endif %}
         <div id="anim">
         <ul class="cb-slideshow">
+        {% for item in anim_imgs %}
             <li>
-                <span>Image 01</span>
+                <span>{{ item }}</span>
             </li>
-            <li>
-                <span>Image 02</span>
-            </li>
-            <li>
-                <span>Image 03</span>
-            </li>
-            <li>
-                <span>Image 04</span>
-            </li>
+        {% endfor %}
         </ul>
     </div>
     <div id="sidediv">
@@ -29,10 +27,28 @@
     </div>
 
     <style>
-.cb-slideshow li:nth-child(1) span { 
-    background-image: url({{ base_url }}/{{ directory }}/images/i1.jpg) 
+    {% set child = 1 %}
+    {% set anim = 0 %}
+    {% for item in anim_imgs %}
+.cb-slideshow li:nth-child({{ child }}) span { 
+    background-image: url({{ base_url }}/{{ adir }}{{ item|replace({'public://':'sites/default/files/'}) }});
+    {% if child > 1%}
+    -webkit-animation-delay: {{ anim }}s;
+    -moz-animation-delay:  {{ anim }}s;
+    -o-animation-delay:  {{ anim }}s;
+    -ms-animation-delay:  {{ anim }}s;
+    animation-delay:  {{ anim }}s; 
+
+    {% endif %} 
 }
-.cb-slideshow li:nth-child(2) span { 
+{% set child = child + 1 %}
+{% set anim = anim + 6 %}
+{% endfor %}
+{% set timgs = anim_imgs|length %}
+.cb-slideshow li span{
+    animation:imageAnimation {{ timgs*6 }}s linear infinite 0s;
+}
+{# .cb-slideshow li:nth-child(2) span { 
     background-image: url({{ base_url }}/{{ directory }}/images/i2.jpg);
     -webkit-animation-delay: 6s;
     -moz-animation-delay: 6s;
@@ -55,7 +71,7 @@
     -o-animation-delay: 18s;
     -ms-animation-delay: 18s;
     animation-delay: 18s; 
-}
+} #}
     </style>
 
 
@@ -63,16 +79,16 @@
         <div id="news">
             <div class="tabs">
                 <ul>
-                    <li onclick="changeNews(1)">
+                    <li onclick="changeNews(1,this)" class="active">
                         <p>News</p>
                     </li>
-                    <li onclick="changeNews(2)">
+                    <li onclick="changeNews(2,this)">
                         <p>Policy</p>
                     </li>
                 </ul>
             </div>
             <div class="newscontent">
-                <table>
+                {# <table>
                     <tbody>
                         <tr>
                             <td>1</td>
@@ -96,15 +112,29 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
-                <a href="https://fossee.in/media-article" class="btn" style="float: right;">View All</a>
+                </table> #}
+                {{ body_teaser }}
+                <a href="{{ base_url }}/media-article" class="btn" style="float: right;">View All</a>
             </div>
+            <script>
+                var tables = document.getElementsByTagName('table');
+                var table = tables[0];
+                var rows = table.rows;
+                for(var i = 0, td; i < rows.length; i++){
+                    td = document.createElement('td');
+                    td.appendChild(document.createTextNode(i + 1));
+                    rows[i].insertBefore(td, rows[i].firstChild);
+                }
+            </script>
             <div class="policycontent" style="display:none;">
-                prpprprp
+                <div>
+                    <p>Policy on adoption of Open Source Software for Govt. of India</p>
+                    <a href="https://fossee.in/sites/default/files/MHRD_policy.pdf" target="_blank"><i class="fa fa-info-circle"></i></a>
+                </div>
             </div>
         </div>
 
-        <div id="flexslider" onmouseenter="flex_stop_anim=true;" onmouseleave="flex_stop_anim=false;" style="overflow-x: hidden;display: none;">
+        <div id="flexslider" onmouseenter="flex_stop_anim=true;" onmouseleave="MouseLeave();" style="overflow-x: hidden;">
             <div class="flex">
                 <img class="theicon" src="{{ base_url }}/{{ directory }}/images/logo/logo_icon_1.png">
                 <a href="">Scilab Toolboxes</a>
@@ -396,10 +426,4 @@
             </div>
         </div>
     </div>
-        <script src="{{ base_url }}/{{ directory }}/js/main.js"></script>
-           <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
-      <div class="section layout-container clearfix">
-        {{ page.header }}
-      </div>
-    </header>
-    
+        <script src="{{ base_url }}/{{ directory }}/js/main.js"></script>    

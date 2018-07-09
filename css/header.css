@@ -1,8 +1,12 @@
+:root{
+    --head:60px;
+}
 /*The Logo of the Website*/
 #logo{
     float: left;
-    height:60px;
+    height:calc(var(--head) - 14px);
     background-color: white;
+    margin:7px;
 }
 /* Header Of the Website*/
 #fosseeheader{
@@ -11,12 +15,12 @@
     z-index: 111;
     background-color: #fff;
     width:100%;
-    height: 60px;
+    height: var(--head);
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.5);
     color: #fff;
     margin-bottom: 3px;
-    padding: 7px;
-    overflow-x: hidden;
+    padding: 0;
+    overflow: hidden;
 }
 #mainMenu{
     height: 100%;
