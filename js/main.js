@@ -8,30 +8,30 @@ function carousel() {
         var i;
         var x = document.getElementsByClassName("flex");
         for (i = 0; i < x.length; i++) {
-            x[i].style = "margin-right:-200px;margin-left:200px;visibility:hidden;opacity:0;";
+            x[i].style = "right:-200px;left:200px;visibility:hidden;opacity:0;";
         }
         slideIndex++;
         if (slideIndex > x.length) { slideIndex = 1 }
-        x[slideIndex - 1].style = "margin-right:0;margin-left:0;visibility:visible;opacity:1;";
+        x[slideIndex - 1].style = "right:0;left:0;visibility:visible;opacity:1;";
     }
 }
 function NextFlex() {
     var x = document.getElementsByClassName("flex");
     for (var i = 0; i < x.length; i++) {
-        x[i].style = "margin-right:-200px;margin-left:200px;visibility:hidden;opacity:0;";
+        x[i].style = "right:-200px;left:200px;visibility:hidden;opacity:0;";
     }
     slideIndex++;
     if (slideIndex > x.length) { slideIndex = 1 }
-    x[slideIndex - 1].style = "margin-right:0;margin-left:0;visibility:visible;opacity:1;";
+    x[slideIndex - 1].style = "right:0;left:0;visibility:visible;opacity:1;";
 }
 function PrevFlex() {
     var x = document.getElementsByClassName("flex");
     for (var i = 0; i < x.length; i++) {
-        x[i].style = "margin-right:-200px;margin-left:200px;visibility:hidden;opacity:0;";
+        x[i].style = "right:-200px;left:200px;visibility:hidden;opacity:0;";
     }
     slideIndex--;
     if (slideIndex < 1) { slideIndex = 1 }
-    x[slideIndex - 1].style = "margin-right:0;margin-left:0;visibility:visible;opacity:1;";
+    x[slideIndex - 1].style = "right:0;left:0;visibility:visible;opacity:1;";
 }
 function changeActivities(el, n) {
     var e;

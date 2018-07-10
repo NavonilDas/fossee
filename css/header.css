@@ -15,7 +15,7 @@
     top:var(--gap);
     z-index: 111;
     background-color: #fff;
-    width:100%;
+    width:100vw;
     height: var(--head);
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -129,6 +129,7 @@
     margin-top:7vh;
     z-index: 100;
     display: grid;
+    overflow: hidden;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 120px;
     grid-template-areas: "poster bro contacts mhrd"
@@ -151,7 +152,15 @@
         margin-left: 150px;
     }
 }
-
+@media screen and (max-width:600px){
+    #footer{ 
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 60px 60px;
+        grid-template-areas: "contacts mhrd"
+        "cc  cc"
+        "icons icons";
+    }
+}
 @media screen and (max-width:875px){
     #mainMenu{
         display: none;
