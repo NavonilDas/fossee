@@ -334,15 +334,6 @@ body{
     margin-left: 3em;
     margin-right: 0.5em;
 }
-
-@media screen and (max-width:900px){
-  #news{
-    width:90%;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-}
-
 #news ul{
   white-space: nowrap;
   background: #4c7099;
@@ -521,22 +512,14 @@ i.arrow {
 
 #anim{
     position: relative;
-    top:calc(var(--head) + var(--gap));
     z-index: -10;
     width: 100%;
+    top:calc(var(--head) + var(--gap));
     height: calc(100vh - var(--head));
 }
 
 @media screen and (max-width:900px){
-    #anim{
-        height:calc( ((100vw / 16) * 9) - var(--head) + var(--gap));
-    }
-    #sidediv{
-        top:calc( ((100vw / 16) * 9) - var(--head) + var(--gap));
-    }
-    #sidediv p{
-        font-size:1.5em;
-    }
+
 }
 
 @keyframes titleAnimation { 
@@ -630,21 +613,27 @@ i.arrow {
     min-height:calc(100vh - var(--head));
     z-index: 100;
     width:100%;
+    display:grid;
+    padding-bottom: 70px;
+    grid-row-gap: 10px;
+    grid-column-gap: 1%;
+    grid-template-columns: 19% 60% 19%;
+    grid-template-areas: "fsidebar content ssidebar";
 }
 .layout-content{
-    width: 70%;
-    margin-right: 10%;
-    float: right;
-    padding-bottom: 70px;
+    grid-area: content;
 }
-aside.layout-sidebar-first{
-    position: fixed;
-    display: none;
-    height:200px;
-    top:0;
-    left: 0;
-    width:100vw;
-    z-index: 600;
+.layout-sidebar-first{
+    float:left;
+    padding: 10px;
+    text-align: center;
+    grid-area:fsidebar;
+}
+.layout-sidebar-second{
+    float: right;
+    padding: 10px;
+    grid-area:ssidebar;
+    text-align: center;
 }
 a{
     color:orange;
@@ -654,6 +643,11 @@ a:hover{
     color:blueviolet;
 }
 @media screen and (max-width:900px){
+    #news{
+        width:90%;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
     #special-area{
         display: flex;
         flex-direction: column;
@@ -715,5 +709,27 @@ a:hover{
         padding: 0 1em 1em 1em;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
+    }
+    #anim{
+        height:calc( ((100vw / 16) * 9) - var(--head) + var(--gap));
+    }
+    #sidediv{
+        top:calc( ((100vw / 16) * 9) + (2 * var(--gap) ) );
+    }
+    #sidediv p{
+        font-size:1.5em;
+        margin:10px;
+    }
+}
+@media screen and (max-width:900px){
+    .layout-container{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "fsidebar ssidebar""content content";
+    }
+}
+@media screen and (max-width:600px){
+    .layout-container{
+        grid-template-columns: 1fr;
+        grid-template-areas: "fsidebar""ssidebar""content";
     }
 }

@@ -207,4 +207,9 @@
     width:100vw;
     z-index: 110;
     background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    transition: opacity 1s ease;
+}
+#banner_header div{
+    margin:auto auto;
 }

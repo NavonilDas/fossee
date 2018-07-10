@@ -1,15 +1,21 @@
   {% if bann_en == 1 %}
     <div id="banner_header">
+      <div>
         {{ page.header }}
+      </div>
     </div>
   {% endif %}
-  
+
     {% if is_def_anim %}
     {% set adir = directory ~ "/images/" %}
     {% else %}
     {% set adir = '' %}
     {% endif %}
-        <div id="anim">
+    <div id="sidediv">
+        <p></p>
+    </div>
+
+    <div id="anim">
         <ul class="cb-slideshow">
         {% for item in anim_imgs %}
             <li>
@@ -18,10 +24,6 @@
         {% endfor %}
         </ul>
     </div>
-    <div id="sidediv">
-        <p></p>
-    </div>
-
     <style>
     {% set child = 1 %}
     {% set anim = 0 %}

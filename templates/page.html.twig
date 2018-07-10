@@ -37,36 +37,26 @@
 
   {% if bann_en == 1 %}
     <div id="banner_header">
+      <div>
         {{ page.header }}
+      </div>
     </div>
   {% endif %}
-  
-<div class="layout-container">
-  {# {{ page.primary_menu }}
-  {{ page.secondary_menu }}
 
-  {{ page.highlighted }}
+<div class="layout-container">    
 
-  {{ page.help }} #}
+      <div class="layout-sidebar-first" role="complementary">
+        {{ page.sidebar_first }}
+      </div>
 
-  <main role="main">
+      <div class="layout-sidebar-second" role="complementary">
+        {{ page.sidebar_second }}
+      </div>
+
     <div class="layout-content">
       {{ page.content }}
     </div>
 
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
-
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
-
-  </main>
 </div>
 <script src="{{ base_url }}/{{ directory }}/js/jquery-3.3.1.min.js"></script>
 {% endif %}

@@ -21,11 +21,11 @@ var body_banner_hidden = false;
 function RemoveBanner(){
     if(window.pageYOffset > 175){
         document.documentElement.style.setProperty('--gap', '0px');
-        document.getElementById('banner_header').style.display = "none";
+        document.getElementById('banner_header').style = "opacity:0;visibility:hidden;";
         body_banner_hidden = true;
     }
     if(body_banner_hidden && window.pageYOffset < 175){
         document.documentElement.style.setProperty('--gap', '175px');
-        document.getElementById('banner_header').style.display = "block";
+        document.getElementById('banner_header').style = "opacity:1;visibility:visible;";
     }
 }

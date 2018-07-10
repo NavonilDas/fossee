@@ -25,11 +25,6 @@
     background-color: gray;
     color:#fff;
 }
-
-.layout-sidebar-second{
-    width:20%;
-    float:right;
-}
 #scroll-container{
     max-height: 200px;
     overflow-y: auto;
