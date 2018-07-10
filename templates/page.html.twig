@@ -25,7 +25,6 @@
       {% endif %}
     </div>
         <img src="{{ base_url }}/{{ directory }}/images/logo.png" alt="" id="logo">
-
     </div>
   </div>
 {% else %}
@@ -35,18 +34,20 @@
       @import url("{{ base_url }}/{{ directory }}/css/form.css");
       @import url("{{ base_url }}/{{ directory }}/css/bootstrap.css");
   </style>
+
+  {% if bann_en == 1 %}
+    <div id="banner_header">
+        {{ page.header }}
+    </div>
+  {% endif %}
+  
 <div class="layout-container">
-
-  <header role="banner">
-    {{ page.header }}
-  </header>
-
-  {{ page.primary_menu }}
+  {# {{ page.primary_menu }}
   {{ page.secondary_menu }}
 
   {{ page.highlighted }}
 
-  {{ page.help }}
+  {{ page.help }} #}
 
   <main role="main">
     <div class="layout-content">

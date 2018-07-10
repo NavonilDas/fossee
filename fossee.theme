@@ -31,7 +31,7 @@ function fossee_preprocess_html(&$variables)
     } else {
         $variables['the_logo'] = 'themes/FOSSEE/images/logo.png';
     }
-
+    $variables['bann_en'] = fossee_theme_get_settings('bann_en',0);
 }
 
 function fossee_preprocess_page(&$variables, $hook)
@@ -167,11 +167,12 @@ function fossee_preprocess_page(&$variables, $hook)
         }
 
         $variables['anim_imgs'] = $anim_imgs;
+        $node = \Drupal::entityManager()->getStorage('node')->load(1);
+        $view_builder = \Drupal::entityManager()->getViewBuilder('node');
+        $variables['body_full'] = $node->body->view('full');
+        $variables['body_teaser'] = $node->body->view('teaser');    
     }
-    $node = \Drupal::entityManager()->getStorage('node')->load(1);
-    $view_builder = \Drupal::entityManager()->getViewBuilder('node');
-    $variables['body_full'] = $node->body->view('full');
-    $variables['body_teaser'] = $node->body->view('teaser');
+    $variables['bann_en'] = fossee_theme_get_settings('bann_en',0);
 }
 
 function fossee_theme_get_settings($key, $default)

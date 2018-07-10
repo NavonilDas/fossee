@@ -9,8 +9,11 @@
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  <body{{ attributes }}>
-
+  {% if bann_en == 1%}
+    <body{{ attributes }} onscroll="RemoveBanner();">
+  {% else %}
+      <body{{ attributes }}>
+  {% endif %}
   {% if errpage.is == 0 %}
       <div id="fosseeheader">
         <a href="{{ base_url }}"><img src="{{ base_url }}/{{ the_logo }}" alt="" id="logo"></a>
@@ -29,6 +32,17 @@
     {{ page_bottom }}
 
     <js-bottom-placeholder token="{{ placeholder_token }}">
+
+    <div id="sideNavBar">
+        <!-- Button to close the side Navigation Bar-->
+        <label onclick="closeBar()">&lsaquo;</label>
+        <ul>
+              {% for item in main_menu %}
+                <li><a href="{{ item.link__uri|replace({'internal:': base_url }) }}">{{ item.title }}</a></li>
+              {% endfor %}
+        </ul>
+    </div>
+
         {% if errpage.is == 0 %}
        <div id="footer">
         <div id="poster" style="grid-area: poster;">
@@ -109,5 +123,13 @@
         </div>
     </div>
     {% endif %}
+    <script src="{{ base_url }}/{{ directory }}/js/navbar.js"></script>
+  {% if bann_en == 1%}
+    <style>
+        :root{
+            --gap:175px;
+        }
+    </style>
+  {% endif %}
   </body>
 </html>

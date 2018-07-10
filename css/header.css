@@ -1,5 +1,6 @@
 :root{
     --head:60px;
+    --gap:0px;
 }
 /*The Logo of the Website*/
 #logo{
@@ -11,7 +12,7 @@
 /* Header Of the Website*/
 #fosseeheader{
     position: fixed;
-    top:0;
+    top:var(--gap);
     z-index: 111;
     background-color: #fff;
     width:100%;
@@ -21,6 +22,7 @@
     margin-bottom: 3px;
     padding: 0;
     overflow: hidden;
+    transition: top 1s ease;
 }
 #mainMenu{
     height: 100%;
@@ -89,7 +91,7 @@
     float:right;
     position: relative;
     top:20px;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 20px;
     cursor: pointer;
 }
@@ -196,4 +198,13 @@
 }   
 #footer #cc{
     grid-area:cc;   
+}
+#banner_header{
+    position: fixed;
+    top:0;
+    left:0;
+    min-height: 175px;
+    width:100vw;
+    z-index: 110;
+    background: rgba(0, 0, 0, 0.8);
 }

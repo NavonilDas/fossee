@@ -10,7 +10,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#title' => t('Extra Cards'),
         '#description' => t('Select Wether to enable or disable Block.'),
         '#weight' => -1000,
-        // '#open' => true,
+        '#open' => true,
     );
 ####Scilab
     $form['type_scilab'] = array(
@@ -18,7 +18,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#title' => t('Scilab'),
         '#description' => t('Scilab.'),
         '#weight' => -1000,
-        // '#open' => true,
+        '#open' => true,
     );
 
     $form['type_scilab']['scilab_blck'] = array(
@@ -58,7 +58,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#title' => t('eSim'),
         '#description' => t('esim.'),
         '#weight' => -1000,
-        // '#open' => true,
+        '#open' => true,
     );
     $form['type_esim']['esim_text'] = array(
         '#type' => 'radios',
@@ -96,7 +96,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#title' => t('DWSIM'),
         '#description' => t('esim.'),
         '#weight' => -1000,
-        // '#open' => true,
+        '#open' => true,
     );
     $form['type_dwsim']['dwsim_text'] = array(
         '#type' => 'radios',
@@ -124,7 +124,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#title' => t('OpenFOAM'),
         '#description' => t('OpenFOAM.'),
         '#weight' => -1000,
-        // '#open' => true,
+        '#open' => true,
     );
     $form['type_openf']['openf_text'] = array(
         '#type' => 'radios',
@@ -161,7 +161,7 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         '#title' => t('Or Tools'),
         '#description' => t('Or Tools.'),
         '#weight' => -1000,
-        // '#open' => true,
+        '#open' => true,
     );
     $form['type_or']['or_blck'] = array(
         '#type' => 'radios',
@@ -379,6 +379,22 @@ function fossee_form_system_theme_settings_alter(&$form, &$form_state)
         );
     }
     $form['thdetail']['t1e'] = array('#markup' => '</td></tr></table>');
+    $form['banner_det'] = array(
+        '#type' => 'details',
+        '#title' => t('Banner'),
+        '#description' => t('Enable and Disable Banner.'),
+        '#weight' => -1001,
+        '#open' => true,
+    );
+    $form['banner_det']['bann_en'] = array(
+        '#type' => 'radios',
+        '#title' => t('Banner Enable'),
+        '#default_value' => fossee_theme_get_settings('bann_en', 0),
+        '#options' => array(
+            0 => t('Disabled'),
+            1 => t('Enabled'),
+        ),
+    );
     $form['#submit'][] = 'fossee_form_submit';
     return $form;
 }
